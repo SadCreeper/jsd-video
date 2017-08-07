@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', '无标题') - JSD Team</title>
+    <title>@yield('title', '无标题') - 浊酒·清心 弘扬中国文化，传承民族精神</title>
 
     <!-- icon -->
     <link rel="shortcut icon" href="/img/favicon.ico" />
