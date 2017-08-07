@@ -1,12 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app_imax')
 
 @section('title', '列表')
 
-@section('content')
-<!-- 巨幕 -->
-<div class="">
-    <img src="/img/banner.jpg" alt="" style="width:100%">
-</div>
+@section('content_under')
 
 <div class="container">
     <!-- 分类 -->

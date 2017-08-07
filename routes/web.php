@@ -11,6 +11,12 @@
 |
 */
 
+
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index');
+
 //首页
 Route::get('/','PagesController@home')->name('home');
 //列表
