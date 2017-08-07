@@ -19,15 +19,13 @@
     <link href="/css/app.css" rel="stylesheet">
     @yield('styles')
 </head>
-<body>
+<body id="app"> <!-- id = app : 开启 Vue.js-->
 
     @include('layouts._header')
 
-    <div class="container" id="app"> <!-- id = app : 开启 Vue.js-->
-        @include('shared.errors')
-        @include('shared.messages')
-        @yield('content')
-    </div>
+    @include('shared.errors')
+    @include('shared.messages')
+    @yield('content')
 
     @include('layouts._footer')
 

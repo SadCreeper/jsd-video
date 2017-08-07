@@ -9,17 +9,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">首页</a>
+      <a class="navbar-brand" href="{{ route('home') }}">首页</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+         <li><a href="{{ route('list') }}">列表</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <img src="/img/default.jpg" alt="" class="img-circle" style="width:25px;height:25px"> SadCreeper <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">个人设置</a></li>
+            <li><a href="{{ route('user') }}">个人设置</a></li>
             <li><a href="#">我要上传</a></li>
             <li><a href="#">我的上传</a></li>
             <li><a href="#">我的收藏</a></li>
@@ -41,7 +44,3 @@
 </nav>
 
 <div style="margin-top:55px"></div>
-
-<div class="">
-    <img src="/img/banner.jpg" alt="" style="width:100%">
-</div>

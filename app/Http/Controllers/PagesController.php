@@ -10,4 +10,14 @@ class PagesController extends Controller
     {
         return view('home');
     }
+
+    public function list()
+    {
+        return view('list');
+    }
+
+    public function user()
+    {
+        return view('users/user');
+    }
 }

@@ -13,4 +13,7 @@
 
 //首页
 Route::get('/','PagesController@home')->name('home');
+//列表
 Route::get('/list','PagesController@list')->name('list');
+//用户
+Route::get('/user','PagesController@user')->name('user');
