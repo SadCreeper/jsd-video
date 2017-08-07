@@ -17,34 +17,24 @@
          <li><a href="{{ route('list') }}">列表</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          @if (Auth::guest())
-              <li><a href="{{ url('/login') }}">登录</a></li>
-              <li><a href="{{ url('/register') }}">注册</a></li>
-          @else
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="/img/default.jpg" alt="" class="img-circle" style="width:25px;height:25px"> {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{ route('user') }}">个人设置</a></li>
-                  <li><a href="#">我要上传</a></li>
-                  <li><a href="#">我的上传</a></li>
-                  <li><a href="#">我的收藏</a></li>
-                  <li><a href="#">我的关注</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="{{ url('/logout') }}"
-                      onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                      退出登录
-                  </a></li>
+          <li><a href="">登录</a></li>
+          <li><a href="">注册</a></li>
 
-                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                  </form>
-                </ul>
-              </li>
-          @endif
-        <li><a href="#">上传</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <img src="/img/default.jpg" alt="" class="img-circle" style="width:25px;height:25px"> SadCreeper <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ route('user') }}">个人设置</a></li>
+              <li><a href="#">我要上传</a></li>
+              <li><a href="#">我的上传</a></li>
+              <li><a href="#">我的收藏</a></li>
+              <li><a href="#">我的关注</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ url('/logout') }}">退出登录</a></li>
+            </ul>
+          </li>
+          <li><a href="#">上传</a></li>
       </ul>
       <form class="navbar-form navbar-right">
         <div class="form-group">
