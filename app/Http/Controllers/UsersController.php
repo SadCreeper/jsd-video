@@ -9,6 +9,12 @@ use Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => ['edit', 'update']
+        ]);
+    }
     //用户信息页
     public function show($id)
     {
@@ -44,6 +50,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
@@ -58,6 +65,7 @@ class UsersController extends Controller
         ]);
 
         $user = User::findOrFail($id);
+        $this->authorize('update', $user);
 
         $data = [];
         $data['nickname'] = $request->nickname;
@@ -72,5 +80,11 @@ class UsersController extends Controller
         session()->flash('success', '个人设置更新成功！');
 
         return redirect()->route('users.edit', $id);
+    }
+    //用户管理页
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 }

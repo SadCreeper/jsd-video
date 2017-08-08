@@ -14,9 +14,13 @@
                   <li class="list-group-item"><a href="#">我的上传</a></li>
                   <li class="list-group-item"><a href="#">我的收藏</a></li>
                   <li class="list-group-item"><a href="#">我的关注</a></li>
+                  @if($user->isAdmin)
                   <li class="list-group-item"><a href="#">作品管理</a></li>
                   <li class="list-group-item"><a href="#">用户管理</a></li>
+                  @endif
+                  @if($user->id == 1)
                   <li class="list-group-item"><a href="#">网站设置</a></li>
+                  @endif
                 </ul>
             </div>
         </div>
