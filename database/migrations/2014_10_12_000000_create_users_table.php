@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->char('phone', 11)->unique()->nullable();
             $table->integer('gender')->nullable();
             $table->string('avatar')->nullable();
+            $table->string('motto')->nullable();
             $table->boolean('isAdmin')->default(0);
             $table->rememberToken();
             $table->timestamps();

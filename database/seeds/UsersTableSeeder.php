@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
             'phone' => 15011001100,
             'gender' => 1,
             'avatar' => 'img/avatar.jpg',
+            'motto' => '生活可以随心所欲，但不能随波逐流',
             'isAdmin' => 1,
             'created_at' => Carbon::now(),
         ]);
