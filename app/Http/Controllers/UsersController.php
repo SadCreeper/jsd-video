@@ -9,6 +9,7 @@ use Auth;
 
 class UsersController extends Controller
 {
+    //用户信息页
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -37,5 +38,39 @@ class UsersController extends Controller
             'status' => 200,
             'message' => '注册成功！'
         ]);
+    }
+
+    //用户编辑页
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
+    }
+
+    //用户编辑
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nickname' => 'required|min:4|max:15',
+            'password' => 'confirmed|min:6|max:16',
+            'phone' => 'integer',
+            'motto' => 'max:255',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $data = [];
+        $data['nickname'] = $request->nickname;
+        $data['phone'] = $request->phone;
+        $data['gender'] = $request->gender;
+        $data['motto'] = $request->motto;
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+        $user->update($data);
+
+        session()->flash('success', '个人设置更新成功！');
+
+        return redirect()->route('users.edit', $id);
     }
 }

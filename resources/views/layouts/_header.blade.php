@@ -23,7 +23,7 @@
                             <img src="/img/default.jpg" alt="" class="img-circle" style="width:25px;height:25px"> {{ Auth::user()->nickname }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a href="{{ route('user') }}">个人设置</a></li>
+                          <li><a href="{{ route('users.edit', Auth::id()) }}">个人设置</a></li>
                           <li><a href="#">我要上传</a></li>
                           <li><a href="#">我的上传</a></li>
                           <li><a href="#">我的收藏</a></li>

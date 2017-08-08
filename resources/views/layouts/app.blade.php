@@ -23,8 +23,6 @@
 
     @include('layouts._header')
 
-    @include('shared.errors')
-    @include('shared.messages')
     @yield('content')
 
     @include('layouts._footer')
