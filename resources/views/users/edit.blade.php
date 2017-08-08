@@ -1,10 +1,10 @@
-@extends('users.user')
+@extends('users.user_app')
 
 @section('title', '个人设置')
 
-@section('nickname', $user->nickname)
+@section('nickname', Auth::user()->nickname)
 
-@section('motto', $user->motto)
+@section('motto', Auth::user()->motto)
 
 @section('user_content')
 

@@ -11,7 +11,7 @@
 |
 */
 //用户资源路由
-//Route::get('/users', 'UsersController@index')->name('users.index');
+Route::get('/users', 'UsersController@index')->name('users.index');
 //Route::get('/users/{user}', 'UsersController@show')->name('users.show');
 //Route::get('/users/create', 'UsersController@create')->name('users.create');
 Route::post('/users', 'UsersController@store')->name('users.store');

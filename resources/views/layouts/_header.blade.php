@@ -28,6 +28,13 @@
                           <li><a href="#">我的上传</a></li>
                           <li><a href="#">我的收藏</a></li>
                           <li><a href="#">我的关注</a></li>
+                          @if(Auth::user()->isAdmin)
+                              <li><a href="#">作品管理</a></li>
+                              <li><a href="{{ route('users.index') }}">用户管理</a></li>
+                          @endif
+                          @if(Auth::id() == 1)
+                              <li><a href="#">网站设置</a></li>
+                          @endif
                           <li role="separator" class="divider"></li>
                           <li><a id="signOutBtn" href="javascript:0">退出登录</a></li>
                           <li>

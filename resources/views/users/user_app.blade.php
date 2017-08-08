@@ -14,11 +14,11 @@
                   <li class="list-group-item"><a href="#">我的上传</a></li>
                   <li class="list-group-item"><a href="#">我的收藏</a></li>
                   <li class="list-group-item"><a href="#">我的关注</a></li>
-                  @if($user->isAdmin)
+                  @if(Auth::user()->isAdmin)
                   <li class="list-group-item"><a href="#">作品管理</a></li>
-                  <li class="list-group-item"><a href="#">用户管理</a></li>
+                  <li class="list-group-item"><a href="{{ route('users.index') }}">用户管理</a></li>
                   @endif
-                  @if($user->id == 1)
+                  @if(Auth::id() == 1)
                   <li class="list-group-item"><a href="#">网站设置</a></li>
                   @endif
                 </ul>

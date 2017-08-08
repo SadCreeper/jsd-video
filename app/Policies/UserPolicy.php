@@ -23,4 +23,14 @@ class UserPolicy
     {
         return $currentUser->id === $user->id;
     }
+
+    public function admin(User $user)
+    {
+        return $user->isAdmin === 1;
+    }
+
+    public function super(User $user)
+    {
+        return $user->id === 1;
+    }
 }

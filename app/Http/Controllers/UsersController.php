@@ -12,8 +12,16 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'only' => ['edit', 'update']
+            'only' => ['index', 'edit', 'update']
         ]);
+    }
+    //用户管理页
+    public function index()
+    {
+        //验证登录用户是否为管理员
+        $this->authorize('admin', Auth::user());
+        $users = User::paginate(20);
+        return view('users.index', compact('users'));
     }
     //用户信息页
     public function show($id)
@@ -81,10 +89,5 @@ class UsersController extends Controller
 
         return redirect()->route('users.edit', $id);
     }
-    //用户管理页
-    public function index()
-    {
-        $users = User::all();
-        return view('users.index', compact('users'));
-    }
+
 }
