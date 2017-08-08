@@ -43,6 +43,7 @@
                 success:function($mes){
                     //成功 打印返回信息并重定向到首页
                     //console.log($mes)
+                    $("#signUpWarn").hide()
                     $("#signUpInfo").show()
                     $("#signUpInfo").html($mes.message)
                     emptyForm("#signUpForm")
@@ -59,6 +60,48 @@
                     $("#signUpWarn").html(signUpWarn)
                 },
             });
+        })
+        //登录响应
+        $("button#signInBtn").click(function(){
+            var form_data = $("form#signInForm").serialize()
+            result = $.ajax({
+                url:"{{ route('login') }}",
+                type:"POST",
+                data:form_data,
+                success:function($mes){
+                    //成功 进一步判断
+                    if ($mes.status == 10001) {
+                        //登录失败，打印错误信息
+                        console.log($mes)
+                        $("#signInWarn").show()
+                        $("#signInWarn").html($mes.message)
+                    }else if ($mes.status == 200) {
+                        //登陆成功
+                        //console.log($mes)
+                        $("#signInWarn").hide()
+                        $("#signInInfo").show()
+                        $("#signInInfo").html($mes.message)
+                        emptyForm("#signUpForm")
+                        window.location.href="/"
+                    }
+
+                },
+                error:function($err){
+                    //失败 打印返回信息
+                    //console.log($err)
+                    $err = JSON.parse($err.responseText)
+                    var signInWarn = "";
+                    for (var i in $err) {
+                        signInWarn += "<li>"+$err[i]+"</li>"
+                    }
+                    $("#signInWarn").show()
+                    $("#signInWarn").html(signInWarn)
+                },
+            });
+        })
+        //退出登录
+        $("a#signOutBtn").click(function(){
+            $("form#signOutForm").submit()
         })
         //清空表单
         function  emptyForm(formId){

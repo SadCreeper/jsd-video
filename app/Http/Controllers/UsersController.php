@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -30,6 +31,8 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
             'email' => $request->email,
         ]);
+        //注册成功自动登录
+        Auth::login($user);
         return response()->json([
             'status' => 200,
             'message' => '注册成功！'
