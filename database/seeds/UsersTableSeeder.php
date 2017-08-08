@@ -24,5 +24,17 @@ class UsersTableSeeder extends Seeder
             'isAdmin' => 1,
             'created_at' => Carbon::now(),
         ]);
+        DB::table('users')->insert([
+            'nickname' => 'SadCreeper',
+            'password' => bcrypt('admin'),
+            'email' => '87826632@qq.com',
+            'phone' => 15008437193,
+            'gender' => 1,
+            'avatar' => 'img/avatar.jpg',
+            'motto' => '生活可以随心所欲，但不能随波逐流aaa',
+            'isAdmin' => 0,
+            'created_at' => Carbon::now(),
+        ]);
+        //factory(App\Models\User::class, 50)->create();
     }
 }
