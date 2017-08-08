@@ -17,8 +17,10 @@
          <li><a href="{{ route('list') }}">列表</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="">登录</a></li>
-          <li><a href="">注册</a></li>
+          <li><a href="" data-toggle="modal" data-target="#signIn">登录</a></li>
+          <li><a href="" data-toggle="modal" data-target="#signUp">注册</a></li>
+
+
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -47,3 +49,65 @@
 </nav>
 
 <div style="margin-top:50px"></div>
+
+<!-- 登录模态框 -->
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">登录</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">登录</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 注册模态框 -->
+<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">注册</h4>
+      </div>
+      <div class="modal-body">
+          <div id="signUpWarn" class="alert alert-danger" style="display:none">
+              <!-- AJAX 返回信息 -->
+          </div>
+          <div id="signUpInfo" class="alert alert-info" style="display:none">
+              <!-- AJAX 返回信息 -->
+          </div>
+          <form id="signUpForm" onsubmit="return false()">
+              {{ csrf_field() }}
+            <div class="form-group">
+              <input type="text" name="nickname" class="form-control" placeholder="昵称" value="{{ old('name') }}">
+            </div>
+
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" placeholder="邮箱" value="{{ old('email') }}">
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" placeholder="密码（6-16位字母、数字和符号）" value="{{ old('password') }}">
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="password_confirmation" class="form-control" placeholder="确认密码" value="{{ old('password_confirmation') }}">
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" id="signUpBtn" class="btn btn-primary">注册</button>
+
+      </div>
+    </div>
+  </div>
+</div>

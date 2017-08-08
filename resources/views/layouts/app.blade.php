@@ -31,6 +31,45 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+    $(document).ready(function(){
+        //注册响应
+        $("button#signUpBtn").click(function(){
+            var form_data = $("form#signUpForm").serialize()
+            result = $.ajax({
+                url:"{{ route('users.store') }}",
+                type:"POST",
+                data:form_data,
+                success:function($mes){
+                    //成功 打印返回信息并重定向到首页
+                    //console.log($mes)
+                    $("#signUpInfo").show()
+                    $("#signUpInfo").html($mes.message)
+                    emptyForm("#signUpForm")
+                    window.location.href="/"
+                },
+                error:function($err){
+                    //失败 打印返回信息
+                    $err = JSON.parse($err.responseText)
+                    var signUpWarn = "";
+                    for (var i in $err) {
+                        signUpWarn += "<li>"+$err[i]+"</li>"
+                    }
+                    $("#signUpWarn").show()
+                    $("#signUpWarn").html(signUpWarn)
+                },
+            });
+        })
+        //清空表单
+        function  emptyForm(formId){
+            $(':input',formId)
+            .not(':button, :submit, :reset, :hidden')
+            .val('')
+            .removeAttr('checked')
+            .removeAttr('selected');
+        }
+    });
+    </script>
     @yield('script')
 </body>
 </html>
