@@ -1,6 +1,6 @@
 @extends('users.user_app')
 
-@section('title', '个人设置')
+@section('title', '用户管理')
 
 @section('nickname', Auth::user()->nickname)
 

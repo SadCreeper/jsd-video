@@ -15,9 +15,4 @@ class PagesController extends Controller
     {
         return view('list');
     }
-
-    public function user()
-    {
-        return view('users/user');
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Category;
 use Auth;
 
 class UsersController extends Controller
@@ -12,7 +13,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'only' => ['index', 'edit', 'update']
+            'only' => ['index', 'edit', 'update', 'config']
         ]);
     }
     //用户管理页
@@ -88,6 +89,15 @@ class UsersController extends Controller
         session()->flash('success', '个人设置更新成功！');
 
         return redirect()->route('users.edit', $id);
+    }
+
+    public function config()
+    {
+        //验证登录用户是否为站长
+        $this->authorize('super', Auth::user());
+        //获取分类信息
+        $categories = Category::all();
+        return view('users.config', compact('categories'));
     }
 
 }

@@ -19,7 +19,7 @@
                   <li class="list-group-item"><a href="{{ route('users.index') }}">用户管理</a></li>
                   @endif
                   @if(Auth::id() == 1)
-                  <li class="list-group-item"><a href="#">网站设置</a></li>
+                  <li class="list-group-item"><a href="{{ route('users.config') }}">网站设置</a></li>
                   @endif
                 </ul>
             </div>

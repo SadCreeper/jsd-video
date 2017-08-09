@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//登录
+Route::post('login', 'SessionsController@store')->name('login');
+Route::delete('logout', 'SessionsController@destroy')->name('logout');
+
 //用户资源路由
 Route::get('/users', 'UsersController@index')->name('users.index');
 //Route::get('/users/{user}', 'UsersController@show')->name('users.show');
@@ -18,14 +22,21 @@ Route::post('/users', 'UsersController@store')->name('users.store');
 Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 //Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
+//网站设置
+Route::get('/config', 'UsersController@config')->name('users.config');
 
-//登录
-Route::post('login', 'SessionsController@store')->name('login');
-Route::delete('logout', 'SessionsController@destroy')->name('logout');
+//分类资源路由
+//Route::get('/categories', 'CategoriesController@index')->name('categories.index');
+//Route::get('/categories/{category}', 'CategoriesController@show')->name('categories.show');
+//Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
+Route::post('/categories', 'CategoriesController@store')->name('categories.store');
+//Route::get('/categories/{category}/edit', 'CategoriesController@edit')->name('categories.edit');
+Route::patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
+Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
+
+
 
 //首页
 Route::get('/','PagesController@home')->name('home');
 //列表
 Route::get('/list','PagesController@list')->name('list');
-//用户
-Route::get('/user','PagesController@user')->name('user');
