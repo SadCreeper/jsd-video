@@ -34,9 +34,18 @@ Route::post('/categories', 'CategoriesController@store')->name('categories.store
 Route::patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 
+//文章资源路由
+Route::get('/articles/manage','ArticlesController@manage')->name('articles.manage');
+Route::get('/articles', 'ArticlesController@index')->name('articles.index');
+//Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
+Route::get('/articles/create', 'ArticlesController@create')->name('articles.create');
+Route::post('/articles', 'ArticlesController@store')->name('articles.store');
+Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');
+Route::patch('/articles/{article}', 'ArticlesController@update')->name('articles.update');
+Route::delete('/articles/{article}', 'ArticlesController@destroy')->name('articles.destroy');
 
 
 //首页
-Route::get('/','PagesController@home')->name('home');
+Route::get('/','HomeController@home')->name('home');
 //列表
-Route::get('/list','PagesController@list')->name('list');
+Route::get('/list','HomeController@list')->name('list');

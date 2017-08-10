@@ -10,12 +10,12 @@
                 <p>@yield('motto', '-')</p>
                 <ul class="list-group">
                   <li class="list-group-item"><a href="{{ route('users.edit', Auth::id()) }}">个人设置</a></li>
-                  <li class="list-group-item"><a href="#">我要上传</a></li>
-                  <li class="list-group-item"><a href="#">我的上传</a></li>
-                  <li class="list-group-item"><a href="#">我的收藏</a></li>
-                  <li class="list-group-item"><a href="#">我的关注</a></li>
+                  <li class="list-group-item"><a href="{{ route('articles.create') }}">我要上传</a></li>
+                  <li class="list-group-item"><a href="{{ route('articles.index') }}">我的上传</a></li>
+                  <!-- <li class="list-group-item"><a href="#">我的收藏</a></li>
+                  <li class="list-group-item"><a href="#">我的关注</a></li> -->
                   @if(Auth::user()->isAdmin)
-                  <li class="list-group-item"><a href="#">作品管理</a></li>
+                  <li class="list-group-item"><a href="{{ route('articles.manage') }}">作品管理</a></li>
                   <li class="list-group-item"><a href="{{ route('users.index') }}">用户管理</a></li>
                   @endif
                   @if(Auth::id() == 1)

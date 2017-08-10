@@ -15,7 +15,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nickname', 'email', 'password', 'phone', 'gender', 'avatar', 'motto', 'isAdmin',
+        'nickname',
+        'email',
+        'password',
+        'phone',
+        'gender',
+        'avatar',
+        'motto',
+        'isAdmin',
     ];
 
     /**
@@ -26,4 +33,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //一个用户包含多个文章
+    public function articles()
+    {
+        return $this->hasMany('App\Models\Article');
+    }
 }

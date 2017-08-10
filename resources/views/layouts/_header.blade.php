@@ -24,12 +24,12 @@
                         </a>
                         <ul class="dropdown-menu">
                           <li><a href="{{ route('users.edit', Auth::id()) }}">个人设置</a></li>
-                          <li><a href="#">我要上传</a></li>
-                          <li><a href="#">我的上传</a></li>
-                          <li><a href="#">我的收藏</a></li>
-                          <li><a href="#">我的关注</a></li>
+                          <li><a href="{{ route('articles.create') }}">我要上传</a></li>
+                          <li><a href="{{ route('articles.index') }}">我的上传</a></li>
+                          <!-- <li><a href="#">我的收藏</a></li> -->
+                          <!-- <li><a href="#">我的关注</a></li> -->
                           @if(Auth::user()->isAdmin)
-                              <li><a href="#">作品管理</a></li>
+                              <li><a href="{{ route('articles.manage') }}">作品管理</a></li>
                               <li><a href="{{ route('users.index') }}">用户管理</a></li>
                           @endif
                           @if(Auth::id() == 1)
@@ -46,7 +46,7 @@
                           </li>
                       </ul>
                     </li>
-                    <li><a href="#">上传</a></li>
+                    <li><a href="{{ route('articles.create') }}">上传</a></li>
                 @else
                     <li><a href="" data-toggle="modal" data-target="#signIn">登录</a></li>
                     <li><a href="" data-toggle="modal" data-target="#signUp">注册</a></li>
