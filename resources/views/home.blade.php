@@ -57,7 +57,7 @@
         <div class="col-md-7">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
+                    <a href="{{ route('articles.show', 1) }}"><img src="/img/default.jpg" alt="" style="width:100%"></a>
                 </div>
                 <div class="col-md-4">
                     <img src="/img/default.jpg" alt="" style="width:100%">

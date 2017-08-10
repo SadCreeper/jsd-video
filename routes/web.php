@@ -37,7 +37,7 @@ Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('c
 //文章资源路由
 Route::get('/articles/manage','ArticlesController@manage')->name('articles.manage');
 Route::get('/articles', 'ArticlesController@index')->name('articles.index');
-//Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
+Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
 Route::get('/articles/create', 'ArticlesController@create')->name('articles.create');
 Route::post('/articles', 'ArticlesController@store')->name('articles.store');
 Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');

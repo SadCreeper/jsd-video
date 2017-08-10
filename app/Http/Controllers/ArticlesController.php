@@ -31,6 +31,18 @@ class ArticlesController extends Controller
         $articles = Article::where('user_id', $user_id)->paginate(20);
         return view('articles.index', compact('articles'));
     }
+    //展示页
+    public function show($id)
+    {
+        $article = Article::findOrFail($id);
+        if ($article->type == 1) {
+            return view('articles.show_video', compact('article'));
+        }
+        if ($article->type == 2) {
+            return view('articles.show_album', compact('article'));
+        }
+
+    }
     //上传页
     public function create()
     {
