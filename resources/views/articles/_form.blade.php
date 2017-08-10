@@ -19,7 +19,7 @@
     <label for="cover" class="col-sm-2 control-label">封面图片</label>
     <div class="col-sm-10">
         @if(isset($article))
-            <img src="/{{ $article->cover }}" alt="" style="height:100px">
+            <img src="{{ $article->cover }}" alt="" style="height:100px">
         @endif
         <input type="file" class="form-control" name="cover">
     </div>

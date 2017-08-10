@@ -29,7 +29,7 @@
                     <td>@if($article->type == 1) 视频 @elseif($article->type == 2) 相册 @endif</td>
                     <td>{{ $article->title }}</td>
                     <td>{{ $article->category->name }}</td>
-                    <td><img src="/{{ $article->cover }}" alt="" style="width:50px"></td>
+                    <td><img src="{{ $article->cover }}" alt="" style="width:50px"></td>
                     <td>{{ $article->view }}</td>
                     <td>{{ $article->comment }}</td>
                     <td>{{ $article->created_at }}</td>

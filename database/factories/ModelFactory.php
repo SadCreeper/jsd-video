@@ -30,7 +30,7 @@ $factory->define(App\Models\Article::class, function (Faker\Generator $faker) {
         'type' => $faker->numberBetween(1,2),
         'category_id' => $faker->numberBetween(1,6),
         'title' => $faker->title,
-        'cover' => 'img/default.jpg',
+        'cover' => '/img/default' . $faker->numberBetween(1,4) . '.jpg',
         'intro' => $faker->text,
         'view' => $faker->randomNumber,
         'comment' => $faker->randomNumber,

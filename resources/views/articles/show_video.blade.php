@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <video src="/video/default.mp4" controls="controls" width="100%" poster="/img/default.jpg">
+            <video src="/video/default.mp4" controls="controls" width="100%" poster="{{ $article->cover }}">
                 您的浏览器不支持视频播放。
             </video>
         </div>
