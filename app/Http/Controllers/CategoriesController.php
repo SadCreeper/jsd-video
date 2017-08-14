@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Article;
 use Auth;
 
 class CategoriesController extends Controller
@@ -58,10 +59,16 @@ class CategoriesController extends Controller
     {
         //验证登录用户是否为站长
         $this->authorize('super', Auth::user());
-        //TODO 检查分类下还有文章
-        //
-        $category = Category::findOrFail($id);
-        $category->delete();
+        //TODO 检查分类下是否还有文章
+        $articles = Article::filterArticlesByCategory($id);
+        if (sizeof($articles)) {
+            session()->flash('danger', '请先删除该分类下全部上传！');
+        }
+        else {
+            $category = Category::findOrFail($id);
+            $category->delete();
+            session()->flash('success', '删除成功！');
+        }
         return back();
     }
 }

@@ -7,6 +7,8 @@
 @section('motto', Auth::user()->motto)
 
 @section('user_content')
+    @include('shared.errors')
+    @include('shared.messages')
     <h3>分类管理</h3>
 
     <div id="categoryWarn" class="alert alert-danger" style="display:none">
