@@ -23,24 +23,23 @@
 
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="/img/default.jpg" alt="...">
-                  <div class="carousel-caption">
-                    ...
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="/img/default.jpg" alt="...">
-                  <div class="carousel-caption">
-                    ...
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="/img/default.jpg" alt="...">
-                  <div class="carousel-caption">
-                    ...
-                  </div>
-                </div>
+                  @foreach($articles_top as $article)
+                    @if($loop->iteration == 1)
+                        <div class="item active">
+                          <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}"></a>
+                          <div class="carousel-caption">
+                            {{ $article->title }}
+                          </div>
+                        </div>
+                    @elseif($loop->iteration >= 2 && $loop->iteration <=3)
+                        <div class="item">
+                          <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}"></a>
+                          <div class="carousel-caption">
+                            {{ $article->title }}
+                          </div>
+                        </div>
+                    @endif
+                  @endforeach
               </div>
 
               <!-- Controls -->
@@ -56,26 +55,11 @@
         </div>
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-4">
-                    <a href="{{ route('articles.show', 1) }}"><img src="/img/default.jpg" alt="" style="width:100%"></a>
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-            </div>
-            <div class="row" style="margin-top:40px">
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
+                @foreach($articles_top as $article)
+                  @if($loop->iteration >= 4 && $loop->iteration <= 9)
+                      @include('articles._cover')
+                  @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -83,34 +67,24 @@
 
     <!-- 热评区 -->
     <div>
-        <h4>热评</h4>
+        <h4>热评区</h4>
     </div>
     <div class="row">
         <div class="col-md-5">
-            <img src="/img/default.jpg" alt="" style="width:100%">
+            @foreach($articles_hot as $article)
+              @if($loop->iteration == 1)
+                  <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
+              @endif
+            @endforeach
+
         </div>
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-            </div>
-            <div class="row" style="margin-top:40px">
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
+                @foreach($articles_hot as $article)
+                  @if($loop->iteration >= 2 && $loop->iteration <= 7)
+                      @include('articles._cover')
+                  @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -119,38 +93,28 @@
     </div>
 
     <!-- 分类区 -->
-    <div>
-        <h4>热评</h4>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <img src="/img/default.jpg" alt="" style="width:100%">
-        </div>
-        <div class="col-md-7">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
+    @for ($i = 0; $i < sizeof($articles_category); $i++)
+        <h4>{{ $articles_category[$i]['category'] }}</h4>
+        <div class="row">
+            <div class="col-md-5">
+                @foreach($articles_category[$i]['data'] as $article)
+                  @if($loop->iteration == 1)
+                      <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
+                  @endif
+                @endforeach
+
             </div>
-            <div class="row" style="margin-top:40px">
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
-                </div>
-                <div class="col-md-4">
-                    <img src="/img/default.jpg" alt="" style="width:100%">
+            <div class="col-md-7">
+                <div class="row">
+                    @foreach($articles_category[$i]['data'] as $article)
+                      @if($loop->iteration >= 2 && $loop->iteration <= 7)
+                          @include('articles._cover')
+                      @endif
+                    @endforeach
                 </div>
             </div>
         </div>
-    </div>
+    @endfor
 </div>
 
 

@@ -3,12 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('home');
+        //获取 TOP 全部文章前9个
+        $articles_top = Article::homeArticles('view',9);
+        //获取热评文章
+        $articles_hot = Article::homeArticles('comment',7);
+
+        //TODO 获取分类文章
+        $categories = Category::all();
+        //dump($categories);
+        $articles_category = [];
+        for ($i=0; $i < sizeof($categories); $i++) {
+            $articles_category[$i]['category'] = $categories[$i]['name'];
+            $articles_category[$i]['data'] = Article::filterArticlesByCategory($categories[$i]['id'],7);
+        }
+        return view('home', compact('articles_top', 'articles_hot', 'articles_category'));
     }
 
     public function list()
