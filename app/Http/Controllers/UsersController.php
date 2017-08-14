@@ -96,7 +96,7 @@ class UsersController extends Controller
         //验证登录用户是否为站长
         $this->authorize('super', Auth::user());
         //获取分类信息
-        $categories = Category::all();
+        $categories = Category::orderBy('order')->get();
         return view('users.config', compact('categories'));
     }
 

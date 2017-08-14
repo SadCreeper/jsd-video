@@ -14,7 +14,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('list') }}">列表</a></li>
+                @foreach($category_header as $category)
+                    <li><a href="{{ route('articles.category', $category->id) }}">{{ $category->name }}</a></li>
+                @endforeach
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())

@@ -7,7 +7,7 @@
 <div class="container">
     <!-- 分类 -->
     <div class="" style="height:40px">
-
+        <h3>{{ $category->name }}</h3>
     </div>
     <!-- 列表区 -->
     <div class="row">

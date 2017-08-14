@@ -16,6 +16,12 @@ class ArticlesController extends Controller
             'only' => ['index', 'manage', 'create','store']
         ]);
     }
+    //文章分类页
+    public function category($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('articles.category', compact('category'));
+    }
     //文章管理页
     public function manage()
     {

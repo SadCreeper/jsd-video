@@ -47,11 +47,12 @@ class Article extends Model
         return $articles;
     }
 
-    //首页文章流函数
+    //智能获取文章 - 主要获取较热文章
+    //（按字段、分类筛选一定时间段一定数量的文章）
     //@ order            排序，排序字段
     //@ number           数量，取的数量
     //@ category  （可选）分类，不传或为 0 则在全部文章中取
-    static function homeArticles($order,$number,$category_id=0)
+    static function filterArticlesSmartHot($order,$number,$category_id=0)
     {
         //获取多少天之内的文章
         $time = Carbon::now()->subDays(7);

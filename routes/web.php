@@ -34,8 +34,11 @@ Route::post('/categories', 'CategoriesController@store')->name('categories.store
 Route::patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 
-//文章资源路由
+//文章分类页
+Route::get('/articles/category/{category}', 'ArticlesController@category')->name('articles.category');
+//文章管理
 Route::get('/articles/manage','ArticlesController@manage')->name('articles.manage');
+//文章资源路由
 Route::get('/articles', 'ArticlesController@index')->name('articles.index');
 Route::get('/articles/create', 'ArticlesController@create')->name('articles.create');
 Route::post('/articles', 'ArticlesController@store')->name('articles.store');
@@ -47,5 +50,3 @@ Route::delete('/articles/{article}', 'ArticlesController@destroy')->name('articl
 
 //首页
 Route::get('/','HomeController@home')->name('home');
-//列表
-Route::get('/list','HomeController@list')->name('list');
