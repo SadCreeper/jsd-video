@@ -19,8 +19,11 @@ class ArticlesController extends Controller
     //文章分类页
     public function category($id)
     {
-        $category = Category::findOrFail($id);
-        return view('articles.category', compact('category'));
+        //获取分类下全部文章
+        $articles = Article::filterArticlesByCategory($id);
+        //获取分类下最热文章
+        $articles_hot = Article::filterArticlesSmartHot('view', 9, $id);
+        return view('articles.category', compact('articles', 'articles_hot'));
     }
     //文章管理页
     public function manage()

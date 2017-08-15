@@ -38,7 +38,7 @@ class Article extends Model
     static function filterArticlesByCategory($category_id,$number=0)
     {
         if ($number == 0) {
-            $articles = Article::where('category_id', $category_id)->get();
+            $articles = Article::where('category_id', $category_id)->paginate(20);
         }
         else {
             $articles = Article::where('category_id', $category_id)->limit($number)->get();
