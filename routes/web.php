@@ -34,6 +34,8 @@ Route::post('/categories', 'CategoriesController@store')->name('categories.store
 Route::patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 
+//文章搜索页
+Route::post('/articles/search', 'ArticlesController@search')->name('articles.search');
 //文章分类页
 Route::get('/articles/category/{category}', 'ArticlesController@category')->name('articles.category');
 //文章管理

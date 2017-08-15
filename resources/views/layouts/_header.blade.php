@@ -54,9 +54,10 @@
                     <li><a href="" data-toggle="modal" data-target="#signUp">注册</a></li>
                 @endif
             </ul>
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" action="{{ route('articles.search') }}" method="post">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="请输入">
+                    <input type="text" class="form-control" name="key" placeholder="请输入">
                 </div>
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>

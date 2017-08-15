@@ -16,6 +16,12 @@ class ArticlesController extends Controller
             'only' => ['index', 'manage', 'create','store']
         ]);
     }
+    //文章搜索页
+    public function search(Request $request)
+    {
+        $articles = Article::where('title', 'like', '%'.$request->key.'%')->paginate(20);
+        return view('articles.search', compact('articles'));
+    }
     //文章分类页
     public function category($id)
     {
