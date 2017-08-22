@@ -101,6 +101,11 @@
         $("a#signOutBtn").click(function(){
             $("form#signOutForm").submit()
         })
+        //游客点击上传后处理
+        $("#uploadBtn").click(function(){
+            alert("请先登录！")
+            $('#signIn').modal('show')
+        })
         //清空表单
         function  emptyForm(formId){
             $(':input',formId)
