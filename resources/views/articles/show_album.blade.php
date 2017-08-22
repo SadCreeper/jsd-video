@@ -9,22 +9,50 @@
     <div class="row masonry">
         @for ($i = 1; $i < 10; $i++)
         <div class="col-md-3 item" style="margin-bottom:20px">
-            <img src="/img/{{ $i }}.jpg" alt="" style="width:100%">
+            <a href="#" onclick="return false" data-toggle="modal" data-target="#myModal" data-whatever="{{ $i }}"><img src="/img/{{ $i }}.jpg" alt="" style="width:100%"></a>
         </div>
         @endfor
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">图片查看</h4>
+      </div>
+      <div class="modal-body">
+          <img src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('scripts')
+<!--瀑布流-->
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
-<!--瀑布流-->
 <script>
 $('.masonry').imagesLoaded(function() {
     $('.masonry').masonry({
     itemSelector: '.item'
     });
 });
+</script>
+
+<!-- 图片查看器 -->
+<script type="text/javascript">
+$('#myModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var article_id = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  console.log(article_id)
+  modal.find('.modal-body img').attr("src", "/img/" + article_id + ".jpg")
+
+})
 </script>
 @endsection
