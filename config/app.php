@@ -167,7 +167,8 @@ return [
          * Package Service Providers...
          */
 
-        //
+         //视图合成器
+         App\Providers\ComposerServiceProvider::class,
 
         /*
          * Application Service Providers...

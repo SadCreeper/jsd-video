@@ -22,12 +22,14 @@
                 <input type="text" class="form-control" name="nickname" value="{{ $user->nickname }}">
             </div>
         </div>
+
         <div class="form-group">
-            <label for="email" class="col-sm-2 control-label">邮箱</label>
+            <label for="phone" class="col-sm-2 control-label">手机</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" value="{{ $user->email }}" disabled>
+                <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" disabled>
             </div>
         </div>
+
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-10">
@@ -42,9 +44,9 @@
         </div>
 
         <div class="form-group">
-            <label for="phone" class="col-sm-2 control-label">手机</label>
+            <label for="email" class="col-sm-2 control-label">邮箱</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="phone" value="{{ $user->phone }}">
+                <input type="email" class="form-control" name="email" value="{{ $user->email }}">
             </div>
         </div>
 

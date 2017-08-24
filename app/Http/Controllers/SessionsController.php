@@ -12,12 +12,12 @@ class SessionsController extends Controller
     public function store(Request $request)
     {
        $this->validate($request, [
-           'email' => 'required|email|max:255',
+           'phone' => 'required|digits:11',
            'password' => 'required'
        ]);
 
        $credentials = [
-           'email'    => $request->email,
+           'phone'    => $request->phone,
            'password' => $request->password,
        ];
 
@@ -31,7 +31,7 @@ class SessionsController extends Controller
            // 登录失败后的相关操作
            return response()->json([
                'status' => 10001,
-               'message' => '邮箱或登录密码不正确！'
+               'message' => '手机号或登录密码不正确！'
            ]);
        }
     }

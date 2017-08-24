@@ -37,7 +37,7 @@ class UsersController extends Controller
         //验证数据
         $this->validate($request, [
             'nickname' => 'required|min:4|max:15',
-            'email' => 'required|email|unique:users|max:255',
+            'phone' => 'required|digits:11|unique:users',
             'password' => 'required|confirmed|min:6|max:16',
         ]);
 
@@ -45,10 +45,10 @@ class UsersController extends Controller
         $user = User::create([
             'nickname' => $request->nickname,
             'password' => bcrypt($request->password),
-            'email' => $request->email,
+            'phone' => $request->phone,
         ]);
         //注册成功自动登录
-        Auth::login($user);
+        //Auth::login($user);
         return response()->json([
             'status' => 200,
             'message' => '注册成功！'
@@ -69,7 +69,7 @@ class UsersController extends Controller
         $this->validate($request, [
             'nickname' => 'required|min:4|max:15',
             'password' => 'confirmed|min:6|max:16',
-            'phone' => 'integer',
+            'email' => 'email',
             'motto' => 'max:255',
         ]);
 
@@ -78,7 +78,7 @@ class UsersController extends Controller
 
         $data = [];
         $data['nickname'] = $request->nickname;
-        $data['phone'] = $request->phone;
+        $data['email'] = $request->email;
         $data['gender'] = $request->gender;
         $data['motto'] = $request->motto;
         if ($request->password) {

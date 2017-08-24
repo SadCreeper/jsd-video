@@ -87,7 +87,7 @@
           <form id="signInForm">
             {{ csrf_field() }}
             <div class="form-group">
-              <input type="text" name="email" class="form-control" placeholder="邮箱" value="{{ old('email') }}">
+              <input type="text" name="phone" class="form-control" placeholder="手机" value="{{ old('phone') }}">
             </div>
 
             <div class="form-group">
@@ -129,7 +129,7 @@
             </div>
 
             <div class="form-group">
-              <input type="text" name="email" class="form-control" placeholder="邮箱" value="{{ old('email') }}">
+              <input type="text" name="phone" class="form-control" placeholder="手机" value="{{ old('phone') }}">
             </div>
 
             <div class="form-group">

@@ -48,11 +48,15 @@
                     window.location.href="/"
                 },
                 error:function($err){
-                    //失败 打印返回信息
-                    $err = JSON.parse($err.responseText)
-                    var signUpWarn = "";
-                    for (var i in $err) {
-                        signUpWarn += "<li>"+$err[i]+"</li>"
+                    if ($err.status == 500) {
+                        var categoryWarn = "服务器错误！"
+                    }else {
+                        //失败 打印返回信息
+                        $err = JSON.parse($err.responseText)
+                        var signUpWarn = "";
+                        for (var i in $err) {
+                            signUpWarn += "<li>"+$err[i]+"</li>"
+                        }
                     }
                     $("#signUpWarn").show()
                     $("#signUpWarn").html(signUpWarn)
@@ -87,10 +91,14 @@
                 error:function($err){
                     //失败 打印返回信息
                     //console.log($err)
-                    $err = JSON.parse($err.responseText)
-                    var signInWarn = "";
-                    for (var i in $err) {
-                        signInWarn += "<li>"+$err[i]+"</li>"
+                    if ($err.status == 500) {
+                        var categoryWarn = "服务器错误！"
+                    }else {
+                        $err = JSON.parse($err.responseText)
+                        var signInWarn = "";
+                        for (var i in $err) {
+                            signInWarn += "<li>"+$err[i]+"</li>"
+                        }
                     }
                     $("#signInWarn").show()
                     $("#signInWarn").html(signInWarn)
