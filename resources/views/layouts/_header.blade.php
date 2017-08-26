@@ -129,7 +129,16 @@
             </div>
 
             <div class="form-group">
-              <input type="text" name="phone" class="form-control" placeholder="手机" value="{{ old('phone') }}">
+              <input type="text" id="phone" name="phone" class="form-control" placeholder="手机" value="{{ old('phone') }}">
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="verify" class="form-control" placeholder="验证码">
+                    <span class="input-group-btn">
+                        <button id="verifyCodeBtn" class="btn btn-default" type="button">获取验证码</button>
+                    </span>
+                </div>
             </div>
 
             <div class="form-group">

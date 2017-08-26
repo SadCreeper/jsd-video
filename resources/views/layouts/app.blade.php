@@ -39,13 +39,22 @@
                 type:"POST",
                 data:form_data,
                 success:function($mes){
-                    //成功 打印返回信息并重定向到首页
-                    //console.log($mes)
-                    $("#signUpWarn").hide()
-                    $("#signUpInfo").show()
-                    $("#signUpInfo").html($mes.message)
-                    emptyForm("#signUpForm")
-                    window.location.href="/"
+                    //成功 进一步判断
+                    if ($mes.status == 10001) {
+                        //注册失败 - 验证码错误，打印错误信息
+                        console.log($mes)
+                        $("#signUpWarn").show()
+                        $("#signUpWarn").html($mes.message)
+                    }else if ($mes.status == 200) {
+                        //注册成功 打印返回信息并重定向到首页
+                        //console.log($mes)
+                        $("#signUpWarn").hide()
+                        $("#signUpInfo").show()
+                        $("#signUpInfo").html($mes.message)
+                        emptyForm("#signUpForm")
+                        window.location.href="/"
+                    }
+
                 },
                 error:function($err){
                     if ($err.status == 500) {
@@ -75,7 +84,7 @@
                     if ($mes.status == 10001) {
                         //登录失败，打印错误信息
                         console.log($mes)
-                        $("#signInWarn").show()
+                        $("#signInWarn").show(300).delay(1000).hide(300)
                         $("#signInWarn").html($mes.message)
                     }else if ($mes.status == 200) {
                         //登陆成功
@@ -86,7 +95,6 @@
                         emptyForm("#signUpForm")
                         window.location.href="/"
                     }
-
                 },
                 error:function($err){
                     //失败 打印返回信息
@@ -113,6 +121,55 @@
         $("#uploadBtn").click(function(){
             alert("请先登录！")
             $('#signIn').modal('show')
+        })
+        //发送验证码
+        $("#verifyCodeBtn").click(function(){
+            //console.log($("input#phone").val())
+            var phone = $("input#phone").val();
+            $.ajax({
+                url:"/verify",
+                type:"POST",
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                },
+                data:{
+                    'phone':phone
+                },
+                success:function($mes){
+                    //成功 进一步判断
+                    console.log($mes)
+                    if ($mes.status == 10001) {
+                        //发送失败，打印错误信息
+                        console.log($mes)
+                        $("#signUpWarn").show(300).delay(1000).hide(300)
+                        $("#signUpWarn").html($mes.message)
+                    }else if ($mes.status == 200) {
+                        //发送成功，打印返回信息
+                        //console.log($mes)
+                        $("#signUpWarn").hide()
+                        $("#signUpInfo").show(300).delay(1000).hide(300)
+                        $("#signUpInfo").html($mes.message)
+                    }
+
+                },
+                error:function($err){
+                    //失败 打印返回信息
+                    console.log($err)
+                    if ($err.status == 500) {
+                        var signUpWarn = "服务器错误！";
+                    }else if ($err.status == 429) {
+                        var signUpWarn = "请稍等再发送";
+                    }else {
+                        $err = JSON.parse($err.responseText)
+                        var signUpWarn = "";
+                        for (var i in $err) {
+                            signUpWarn += "<li>"+$err[i]+"</li>"
+                        }
+                    }
+                    $("#signUpWarn").show(300).delay(1000).hide(300)
+                    $("#signUpWarn").html(signUpWarn)
+                },
+            });
         })
         //清空表单
         function  emptyForm(formId){
