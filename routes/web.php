@@ -36,6 +36,8 @@ Route::post('/categories', 'CategoriesController@store')->name('categories.store
 Route::patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
 Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 
+//上传（网页向后端请求签名后直传OSS）
+Route::get('/upload', 'ArticlesController@upload')->name('articles.upload');
 //文章搜索页
 Route::post('/articles/search', 'ArticlesController@search')->name('articles.search');
 //文章分类页
