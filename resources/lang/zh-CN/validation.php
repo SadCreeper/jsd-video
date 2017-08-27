@@ -147,7 +147,8 @@ return [
         'time'                  => '时间',
         'available'             => '可用的',
         'size'                  => '大小',
-        'category'              => '分类'
+        'category'              => '分类',
+        'cover'                 => '封面图片',
     ],
 
 ];

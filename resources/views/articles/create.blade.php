@@ -21,7 +21,7 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="videoTab">
-      <form class="form-horizontal" method="post" action="{{ route('articles.store') }}">
+      <form class="form-horizontal" method="post" action="{{ route('articles.store') }}" enctype="multipart/form-data">
           {{ csrf_field() }}
           @include('articles._form')
           <div class="form-group">
@@ -34,7 +34,7 @@
       </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="albumTab">
-      <form class="form-horizontal" method="post" action="{{ route('articles.store') }}">
+      <form class="form-horizontal" method="post" action="{{ route('articles.store') }}"  enctype="multipart/form-data">
           {{ csrf_field() }}
           @include('articles._form')
           <div class="form-group">

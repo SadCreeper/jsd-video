@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use Auth;
+use Storage;
 
 class ArticlesController extends Controller
 {
@@ -71,21 +72,28 @@ class ArticlesController extends Controller
         $this->validate($request, [
             'category' => 'required',
             'title' => 'required|max:50',
+            'cover' => 'required',
         ]);
 
         //保存文章数据
-        if ($request->has('video')) {
+        if ($request->hasFile('video')) {
             $type = 1;
         }
-        if ($request->has('photo')) {
+        if ($request->hasFile('photo')) {
             $type = 2;
+        }
+        if ($request->hasFile('cover')) {
+            if ($request->file('cover')->isValid()) {
+                $path = $request->cover->store('covers','local');
+                $path = '/'.str_replace("public","storage",$path);
+            }
         }
         $article = Article::create([
             'user_id' => Auth::id(),
             'type' => $type,
             'title' => $request->title,
             'category_id' => $request->category,
-            'cover' => 'img/default.jpg',
+            'cover' => $path,
             'intro' => $request->intro,
         ]);
 
