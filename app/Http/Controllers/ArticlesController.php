@@ -84,7 +84,7 @@ class ArticlesController extends Controller
         }
         if ($request->hasFile('cover')) {
             if ($request->file('cover')->isValid()) {
-                $path = $request->cover->store('covers','local');
+                $path = $request->cover->store('public/images/covers','local');
                 $path = '/'.str_replace("public","storage",$path);
             }
         }
