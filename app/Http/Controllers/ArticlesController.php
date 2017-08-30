@@ -30,7 +30,7 @@ class ArticlesController extends Controller
         $expiration = $this->gmt_iso8601($end);
 
         //$oss_sdk_service = new alioss($id, $key, $host);
-        $dir = 'user-dir/';
+        $dir = '';
 
         //最大文件大小.用户可以自己设置
         $condition = array(0=>'content-length-range', 1=>0, 2=>1048576000);
@@ -128,30 +128,42 @@ class ArticlesController extends Controller
             'cover' => 'required',
         ]);
 
-        //保存文章数据
-        if ($request->hasFile('video')) {
-            $type = 1;
-        }
-        if ($request->hasFile('photo')) {
-            $type = 2;
-        }
+        //保存封面图片并生成路径
         if ($request->hasFile('cover')) {
             if ($request->file('cover')->isValid()) {
                 $path = $request->cover->store('public/images/covers','local');
                 $path = '/'.str_replace("public","storage",$path);
             }
         }
-        $article = Article::create([
-            'user_id' => Auth::id(),
-            'type' => $type,
-            'title' => $request->title,
-            'category_id' => $request->category,
-            'cover' => $path,
-            'intro' => $request->intro,
-        ]);
 
-        session()->flash('success', '上传成功！');
-        return back();
+        //保存文章数据
+        if ($request->has('video')) {
+            $type = 1;
+            $article = Article::create([
+                'user_id' => Auth::id(),
+                'type' => $type,
+                'title' => $request->title,
+                'category_id' => $request->category,
+                'cover' => $path,
+                'intro' => $request->intro,
+                'video' => $request->video,
+            ]);
+            return response()->json([
+                'status' => 200,
+                'message' => '保存成功！'
+            ]);
+        }else {
+            return response()->json([
+                'status' => 10001,
+                'message' => '请上传视频！'
+            ]);
+        }
+        if ($request->hasFile('photo')) {
+            $type = 2;
+        }
+
+        //session()->flash('success', '上传成功！');
+        //return back();
     }
     //编辑
     public function edit($id)

@@ -74,6 +74,8 @@ a.btn:hover{
 
 @include('shared.errors')
 @include('shared.messages')
+<div id="uploadWarn" class="alert alert-danger" style="display:none"></div>
+<div id="uploadInfo" class="alert alert-success" style="display:none"></div>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
@@ -84,28 +86,22 @@ a.btn:hover{
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="videoTab">
-      <form class="form-horizontal" method="post" action="{{ route('articles.store') }}" enctype="multipart/form-data">
+      <form id="videoForm" class="form-horizontal">
           {{ csrf_field() }}
-          <h4>您所选择的文件列表：</h4>
-          <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
-
-          <br/>
-
-          <div id="container">
-          	<a id="selectfiles" href="javascript:void(0);" class='btn'>选择文件</a>
-          	<a id="postfiles" href="javascript:void(0);" class='btn'>开始上传</a>
-          </div>
-
-          <pre id="console"></pre>
-
           <div class="form-group">
-              <label for="video" class="col-sm-2 control-label">选择视频</label>
-              <div class="col-sm-10">
-                  <input type="file" class="form-control" name="video" value="">
+              <div class="col-md-10 col-md-offset-2">
+                  <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
               </div>
           </div>
+          <div id="container" class="form-group">
+              <div class="col-md-10 col-md-offset-2">
+                  <a id="selectfiles" href="javascript:void(0);" class='btn'> <b>+</b> 添加视频</a>
+              </div>
+          </div>
+          <!-- <pre id="console"></pre> -->
+          <input type="hidden" class="form-control" id="video" name="video">
           @include('articles._form')
-          <button type="submit" class="btn btn-primary col-md-offset-2">保存</button>
+          <button type="button" id="videoFormBtn" class="btn btn-primary col-md-offset-2">保存</button>
       </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="albumTab">
@@ -137,5 +133,55 @@ $('#myTabs a').click(function (e) {
 <!-- 上传 -->
 <script type="text/javascript" src="/js/upload/plupload.full.min.js"></script>
 <script type="text/javascript" src="/js/upload/upload.js"></script>
+
+<!-- 提交表单 -->
+<script type="text/javascript">
+$("button#videoFormBtn").click(function(){
+    //var form_data = $("form#videoForm").serialize()
+    var form_data = new FormData($('#videoForm')[0]);
+    result = $.ajax({
+        url:"{{ route('articles.store') }}",
+        type:"POST",
+        // headers:{
+        //     'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        // },
+        data:form_data,
+        processData: false,
+        contentType: false,
+        success:function($mes){
+            //成功 进一步判断
+            if ($mes.status == 10001) {
+
+                console.log($mes)
+                $("#uploadWarn").show()
+                $("#uploadWarn").html($mes.message)
+            }else if ($mes.status == 200) {
+
+                console.log($mes)
+                $("#uploadWarn").hide()
+                $("#uploadInfo").show()
+                $("#uploadInfo").html($mes.message)
+                //window.location.href="/"
+            }
+            console.log($mes)
+        },
+        error:function($err){
+            if ($err.status == 500) {
+                var uploadWarn = "服务器错误！"
+            }else {
+                //失败 打印返回信息
+                console.log($err)
+                $err = JSON.parse($err.responseText)
+                var uploadWarn = "";
+                for (var i in $err) {
+                    uploadWarn += "<li>"+$err[i]+"</li>"
+                }
+            }
+            $("#uploadWarn").show()
+            $("#uploadWarn").html(uploadWarn)
+        },
+    });
+})
+</script>
 
 @endsection

@@ -18,6 +18,7 @@ class Article extends Model
         'view',
         'comment',
         'status',
+        'video',
     ];
 
     //一个文章属于一个用户
