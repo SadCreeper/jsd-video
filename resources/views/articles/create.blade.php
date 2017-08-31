@@ -101,7 +101,7 @@ a.btn:hover{
           <!-- <pre id="console"></pre> -->
           <input type="hidden" class="form-control" id="video" name="video">
           @include('articles._form')
-          <button type="button" id="videoFormBtn" class="btn btn-primary col-md-offset-2">保存</button>
+          <button type="button" id="videoFormBtn" class="btn btn-primary col-md-offset-2" disabled>提交</button>
       </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="albumTab">

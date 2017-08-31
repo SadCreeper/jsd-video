@@ -170,10 +170,11 @@ var uploader = new plupload.Uploader({
 		FileUploaded: function(up, file, info) {
             console.log('上传完成x1')
             console.log(info.status)
+            $("#videoFormBtn").removeAttr("disabled");
             //set_upload_param(up, file.name);
             if (info.status >= 200 || info.status < 200)
             {
-                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = 'success';
+                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = ' 上传成功';
             }
             else
             {
