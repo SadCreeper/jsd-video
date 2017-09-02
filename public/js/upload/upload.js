@@ -122,8 +122,8 @@ var uploader = new plupload.Uploader({
 	runtimes : 'html5,flash,silverlight,html4',
 	browse_button : 'selectfiles',
 	container: document.getElementById('container'),
-	flash_swf_url : 'lib/plupload-2.1.2/js/Moxie.swf',
-	silverlight_xap_url : 'lib/plupload-2.1.2/js/Moxie.xap',
+	flash_swf_url : '/js/upload/plupload/Moxie.swf',
+	silverlight_xap_url : '/js/upload/plupload/Moxie.xap',
     url : 'http://oss.aliyuncs.com',
     multi_selection : false, //是否允许多传
 
