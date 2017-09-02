@@ -54,7 +54,7 @@
             <label for="gender" class="col-sm-2 control-label">性别</label>
             <div class="col-sm-10">
                 <select class="form-control" name="gender">
-                  <option value="" >保密</option>
+                  <option value="0" >保密</option>
                   <option value="1" <?php if ($user->gender == 1) echo "selected"; ?>>男</option>
                   <option value="2" <?php if ($user->gender == 2) echo "selected"; ?>>女</option>
                 </select>
