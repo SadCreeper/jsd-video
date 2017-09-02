@@ -113,9 +113,6 @@ a.btn:hover{
                   <input type="file" class="form-control" name="photo" value="">
               </div>
           </div>
-          <div id="uploader">
-              <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
-          </div>
           @include('articles._form')
           <button type="submit" class="btn btn-primary col-md-offset-2">提交</button>
       </form>
