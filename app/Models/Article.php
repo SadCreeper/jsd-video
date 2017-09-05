@@ -19,6 +19,7 @@ class Article extends Model
         'comment',
         'status',
         'video',
+        'photos',
     ];
 
     //一个文章属于一个用户

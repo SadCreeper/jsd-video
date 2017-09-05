@@ -9,6 +9,7 @@ use App\Models\Category;
 use Auth;
 use Storage;
 use DateTime;
+use OSS\OssClient;
 
 class ArticlesController extends Controller
 {
@@ -69,6 +70,34 @@ class ArticlesController extends Controller
         return $expiration."Z";
     }
 
+    //上传相片
+    public function uploadPhotos(Request $request)
+    {
+        $name = time(). '_' .$_FILES['file']['name'];
+        try {
+            $ossClient = new OssClient("LTAIzh8m2hZTsDVU", "QDeZGRKNo0emC7tNVXtLXDlTEAavV0", "http://oss-cn-shanghai.aliyuncs.com");
+            $ossClient->putObject("z970-video", $name, file_get_contents($_FILES['file']['tmp_name']));
+            //var_dump($name);
+            return response()->json([
+                'status' => 200,
+                'message' => '上传成功！',
+                'name' => $name
+            ]);
+        } catch (OssException $e) {
+            //var_dump($e->getMessage()) ;
+        }
+
+        // $path = $request->file->store('public/images/photos','local');
+        // $path = '/'.str_replace("public","storage",$path);
+        // $name = ltrim($path,"/storage/images/photos/");
+        // try {
+        //     $ossClient = new OssClient("LTAIzh8m2hZTsDVU", "QDeZGRKNo0emC7tNVXtLXDlTEAavV0", "http://oss-cn-shanghai.aliyuncs.com");
+        //     $ossClient->putObject("z970-video", $name, file_get_contents("/storage/images/photos/e1c93cceb5a192710d32bce965fdec05.jpeg"));
+        // } catch (OssException $e) {
+        //     var_dump($e->getMessage()) ;
+        // }
+    }
+
 
     //文章搜索页
     public function search(Request $request)
@@ -108,7 +137,9 @@ class ArticlesController extends Controller
             return view('articles.show_video', compact('article'));
         }
         if ($article->type == 2) {
-            return view('articles.show_album', compact('article'));
+            $photos_str = $article->photos;
+            $photos_arr = explode(',',$photos_str);
+            return view('articles.show_album', compact('article','photos_arr'));
         }
 
     }
@@ -152,14 +183,26 @@ class ArticlesController extends Controller
                 'status' => 200,
                 'message' => '保存成功！'
             ]);
-        }else {
-            return response()->json([
-                'status' => 10001,
-                'message' => '请上传视频！'
-            ]);
-        }
-        if ($request->hasFile('photo')) {
+        }else if ($request->has('photos')) {
             $type = 2;
+            $article = Article::create([
+                'user_id' => Auth::id(),
+                'type' => $type,
+                'title' => $request->title,
+                'category_id' => $request->category,
+                'cover' => $path,
+                'intro' => $request->intro,
+                'photos' => $request->photos,
+            ]);
+            session()->flash('success', '上传成功！');
+            return back();
+        }else{
+            session()->flash('danger', '请上传图片或视频');
+            return back();
+            // return response()->json([
+            //     'status' => 10001,
+            //     'message' => '请上传视频！'
+            // ]);
         }
 
         //session()->flash('success', '上传成功！');

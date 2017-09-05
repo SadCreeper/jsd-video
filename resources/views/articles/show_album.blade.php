@@ -7,9 +7,9 @@
     <h2>{{ $article->title }}</h2>
     <p>作者：{{ $article->user->nickname }}<span style="margin-left:20px">浏览：{{ $article->view }}</span><span style="margin-left:20px">评论：{{ $article->comment }}</span></p>
     <div class="row masonry">
-        @for ($i = 1; $i < 10; $i++)
+        @for($i = 0; $i < sizeof($photos_arr); $i++)
         <div class="col-md-3 item" style="margin-bottom:20px">
-            <a href="#" onclick="return false" data-toggle="modal" data-target="#myModal" data-whatever="{{ $i }}"><img src="/img/{{ $i }}.jpg" alt="" style="width:100%"></a>
+            <a href="#" onclick="return false" data-toggle="modal" data-target="#myModal" data-whatever="{{ $i }}"><img src="http://z970-video.oss-cn-shanghai.aliyuncs.com/{{ $photos_arr[$i] }}" alt="" style="width:100%"></a>
         </div>
         @endfor
     </div>

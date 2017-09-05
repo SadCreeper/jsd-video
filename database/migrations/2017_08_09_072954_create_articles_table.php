@@ -25,6 +25,7 @@ class CreateArticlesTable extends Migration
             $table->integer('comment')->default(0);
             $table->integer('status')->default(0);
             $table->string('video')->nullable();
+            $table->longText('photos')->nullable();
             $table->timestamps();
         });
     }

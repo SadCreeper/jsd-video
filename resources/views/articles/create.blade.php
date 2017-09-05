@@ -67,6 +67,8 @@ a.btn:hover{
     width: 266.188px;
 }
 </style>
+<link href="/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+<link href="/js/upload/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet">
 @endsection
 
 @section('user_content')
@@ -110,9 +112,13 @@ a.btn:hover{
           <div class="form-group">
               <label for="photo" class="col-sm-2 control-label">添加图片</label>
               <div class="col-sm-10">
-                  <input type="file" class="form-control" name="photo" value="">
+                  <div id="photosUpload">
+                      <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                  </div>
               </div>
           </div>
+          <input type="hidden" class="form-control" id="photos" name="photos">
+
           @include('articles._form')
           <button type="submit" class="btn btn-primary col-md-offset-2">提交</button>
       </form>
@@ -131,8 +137,12 @@ $('#myTabs a').click(function (e) {
 })
 </script>
 <!-- 上传 -->
+
+<script type="text/javascript" src="/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/upload/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="/js/upload/plupload/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
 <script type="text/javascript" src="/js/upload/upload.js"></script>
+<script type="text/javascript" src="/js/upload/plupload/i18n/zh_CN.js"></script>
 
 <!-- 提交表单 -->
 <script type="text/javascript">
@@ -182,5 +192,68 @@ $("button#videoFormBtn").click(function(){
         },
     });
 })
+</script>
+
+<!-- 照片上传 -->
+<script type="text/javascript">
+// Initialize the widget when the DOM is ready
+$(function() {
+    var photos = [];
+    var uploader_photo = $("#photosUpload").plupload({
+        // General settings
+        runtimes : 'html5,flash,silverlight,html4',
+        url : "/upload-photo",
+        headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        },
+
+        // Maximum file size
+        max_file_size : '2mb',
+
+        chunk_size: '1mb',
+
+        // Resize images on clientside if we can
+        resize : {
+            //width : 200,
+            //height : 200,
+            quality : 90,
+            crop: true // crop to exact dimensions
+        },
+
+        // Specify what files to browse for
+        filters : [
+            {title : "Image files", extensions : "jpg,gif,png"},
+        ],
+
+        // Rename files by clicking on their titles
+        rename: true,
+
+        // Sort files
+        sortable: true,
+
+        // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+        dragdrop: true,
+
+        // Views to activate
+        views: {
+            list: true,
+            thumbs: true, // Show thumbs
+            active: 'thumbs'
+        },
+
+        // Flash settings
+        flash_swf_url : '/plupload/js/Moxie.swf',
+
+        // Silverlight settings
+        silverlight_xap_url : '/plupload/js/Moxie.xap',
+    });
+    uploader_photo.bind('uploaded', function (up, file, status) {
+        var res = JSON.parse(file.result.response);
+        photos.push(res.name)
+        //console.log(photos)
+        $("input#photos").val(photos)
+    });
+
+});
 </script>
 @endsection
