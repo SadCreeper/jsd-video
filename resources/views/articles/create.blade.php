@@ -208,7 +208,7 @@ $(function() {
         },
 
         // Maximum file size
-        max_file_size : '2mb',
+        max_file_size : '10mb',
 
         chunk_size: '1mb',
 

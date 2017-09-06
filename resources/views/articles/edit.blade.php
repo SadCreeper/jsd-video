@@ -17,13 +17,13 @@
         <form class="form-horizontal" method="post" action="{{ route('articles.update', $article->id) }}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            @include('articles._form')
             <div class="form-group">
-                <label for="video" class="col-sm-2 control-label">选择视频</label>
+                <label for="video" class="col-sm-2 control-label">视频</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" name="video" value="">
+                    视频暂不支持编辑，<a href="{{ route('articles.show', $article->id) }}" target="_blank">点此查看视频</a>
                 </div>
             </div>
+            @include('articles._form')
             <button type="submit" class="btn btn-primary col-md-offset-2">确认更新</button>
         </form>
     @elseif($article->type == 2)
@@ -31,13 +31,13 @@
         <form class="form-horizontal" method="post" action="{{ route('articles.update', $article->id) }}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            @include('articles._form')
             <div class="form-group">
-                <label for="photo" class="col-sm-2 control-label">添加图片</label>
+                <label for="video" class="col-sm-2 control-label">相册</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" name="photo" value="">
+                    相册暂不支持编辑，<a href="{{ route('articles.show', $article->id) }}" target="_blank">点此查看相册</a>
                 </div>
             </div>
+            @include('articles._form')
             <button type="submit" class="btn btn-primary col-md-offset-2">确认更新</button>
         </form>
     @endif
