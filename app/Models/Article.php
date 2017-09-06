@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
+use Auth;
 
 class Article extends Model
 {
@@ -32,6 +33,14 @@ class Article extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
+    }
+
+    /**
+     * 点赞过文章的用户
+     */
+    public function users_praise()
+    {
+        return $this->belongsToMany('App\Models\User', 'praises', 'article_id', 'user_id');
     }
 
     //按分类获取文章
@@ -65,5 +74,21 @@ class Article extends Model
             $articles = Article::where('category_id',$category_id)->where('created_at', '>', $time)->orderBy($order, 'desc')->limit($number)->get();
         }
         return $articles;
+    }
+
+    //当前用户是否点赞文章
+    //
+    // @ article_id
+    //
+    // return bool(true/false)
+    static function isPraise($article_id)
+    {
+        $user = Auth::user();
+        if(count($user->articles_praise()->where('article_id', $article_id)->get())){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

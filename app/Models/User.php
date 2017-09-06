@@ -39,4 +39,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Article');
     }
+
+    /**
+     * 用户点赞过的文章
+     */
+    public function articles_praise()
+    {
+        return $this->belongsToMany('App\Models\Article', 'praises', 'user_id', 'article_id');
+    }
 }

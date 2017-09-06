@@ -40,6 +40,9 @@ Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('c
 Route::get('/upload', 'ArticlesController@upload')->name('articles.upload');
 //上传相片（先传到后端）
 Route::post('/upload-photo', 'ArticlesController@uploadPhotos')->name('articles.upload-photo');
+//点赞和取消赞
+Route::get('/articles/praise/{article}', 'ArticlesController@praise')->name('articles.praise');
+Route::get('/articles/unpraise/{article}', 'ArticlesController@unpraise')->name('articles.unpraise');
 //文章搜索页
 Route::post('/articles/search', 'ArticlesController@search')->name('articles.search');
 //文章分类页
