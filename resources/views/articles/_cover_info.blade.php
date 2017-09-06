@@ -2,7 +2,7 @@
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
+            <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" class="img-responsive"></a>
         </div>
         <div class="col-md-6">
             <a href="{{ route('articles.show', $article->id) }}"><p><b>{{ $article->title }}</b></p></a>

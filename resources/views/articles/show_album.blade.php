@@ -9,7 +9,7 @@
     <div class="row masonry">
         @for($i = 0; $i < sizeof($photos_arr); $i++)
         <div class="col-md-3 item" style="margin-bottom:20px">
-            <a href="#" onclick="return false" data-toggle="modal" data-target="#myModal" data-whatever="{{ $i }}"><img src="http://z970-video.oss-cn-shanghai.aliyuncs.com/{{ $photos_arr[$i] }}" alt="" style="width:100%"></a>
+            <a href="#" onclick="return false" data-toggle="modal" data-target="#myModal" data-whatever="{{ $photos_arr[$i] }}"><img src="http://z970-video.oss-cn-shanghai.aliyuncs.com/{{ $photos_arr[$i] }}" alt="" style="width:100%"></a>
         </div>
         @endfor
     </div>
@@ -23,7 +23,7 @@
         <h4 class="modal-title" id="myModalLabel">图片查看</h4>
       </div>
       <div class="modal-body">
-          <img src="" alt="">
+          <img src="" alt="" class="img-responsive">
       </div>
     </div>
   </div>
@@ -46,12 +46,12 @@ $('.masonry').imagesLoaded(function() {
 <script type="text/javascript">
 $('#myModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
-  var article_id = button.data('whatever') // Extract info from data-* attributes
+  var url = button.data('whatever') // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   var modal = $(this)
-  console.log(article_id)
-  modal.find('.modal-body img').attr("src", "/img/" + article_id + ".jpg")
+  console.log(url)
+  modal.find('.modal-body img').attr("src", "http://z970-video.oss-cn-shanghai.aliyuncs.com/" + url)
 
 })
 </script>
