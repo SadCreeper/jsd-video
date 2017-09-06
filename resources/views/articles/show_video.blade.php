@@ -4,12 +4,9 @@
 
 @section('content_under')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>{{ $article->title }}</h2>
-            <p>作者：{{ $article->user->nickname }}<span style="margin-left:20px">浏览：{{ $article->view }}</span><span style="margin-left:20px">评论：{{ $article->comment }}</span></p>
-        </div>
-    </div>
+
+    @include('articles._show_info')
+    
     <div class="row">
         <div class="col-md-8">
             <video src="http://z970-images.oss-cn-shanghai.aliyuncs.com/{{$article->video}}" controls="controls" width="100%" poster="{{ $article->cover }}">

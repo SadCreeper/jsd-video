@@ -4,8 +4,9 @@
 
 @section('content_under')
 <div class="container">
-    <h2>{{ $article->title }}</h2>
-    <p>作者：{{ $article->user->nickname }}<span style="margin-left:20px">浏览：{{ $article->view }}</span><span style="margin-left:20px">评论：{{ $article->comment }}</span></p>
+
+    @include('articles._show_info')
+    
     <div class="row masonry">
         @for($i = 0; $i < sizeof($photos_arr); $i++)
         <div class="col-md-3 item" style="margin-bottom:20px">
