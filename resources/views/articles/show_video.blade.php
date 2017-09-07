@@ -6,7 +6,7 @@
 <div class="container">
 
     @include('articles._show_info')
-    
+
     <div class="row">
         <div class="col-md-8">
             <video src="http://z970-images.oss-cn-shanghai.aliyuncs.com/{{$article->video}}" controls="controls" width="100%" poster="{{ $article->cover }}">

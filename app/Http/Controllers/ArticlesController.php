@@ -10,6 +10,7 @@ use Auth;
 use Storage;
 use DateTime;
 use OSS\OssClient;
+use Image;
 
 class ArticlesController extends Controller
 {
@@ -194,8 +195,12 @@ class ArticlesController extends Controller
         //保存封面图片并生成路径
         if ($request->hasFile('cover')) {
             if ($request->file('cover')->isValid()) {
-                $path = $request->cover->store('public/images/covers','local');
-                $path = '/'.str_replace("public","storage",$path);
+                //封面图片压缩存储并生成路径
+                $path = "img/covers/" . time() . "_" . str_random(10) . ".jpg";
+                Image::make($request->cover)->resize(480, 300)->save(public_path($path));
+                $path = '/'.$path;
+                //$path = $request->cover->store('public/images/covers','local');
+                //$path = '/'.str_replace("public","storage",$path);
             }
         }
 
