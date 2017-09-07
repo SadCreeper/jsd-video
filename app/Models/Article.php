@@ -91,4 +91,15 @@ class Article extends Model
             return false;
         }
     }
+
+    //更新浏览量
+    // @ article_id
+    static public function update_view($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->view = $article->view + 1;
+        $article->update([
+            'view' => $article->view,
+        ]);
+    }
 }

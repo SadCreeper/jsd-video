@@ -165,6 +165,9 @@ class ArticlesController extends Controller
     //展示页
     public function show($id)
     {
+        //更新浏览量
+        Article::update_view($id);
+        
         $article = Article::findOrFail($id);
         if ($article->type == 1) {
             return view('articles.show_video', compact('article'));
