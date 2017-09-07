@@ -9,10 +9,14 @@
                 <a class="btn btn-default" id="praiseBtn" href="javascript:0">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                     <span id="praiseText">
-                        @if($article->isPraise($article->id))
-                         取消赞
+                        @if(Auth::check())
+                            @if($article->isPraise($article->id))
+                             取消赞
+                            @else
+                             点赞
+                            @endif
                         @else
-                         点赞
+                            点赞
                         @endif
                     </span>
                     (<span id="praiseNum">{{ sizeof($article->users_praise) }}</span>)
@@ -50,6 +54,8 @@
                     $("#praiseNum").text(praiseNum)
                     //更新按钮内容
                     $("#praiseText").text(" 取消赞")
+                }else if ($mes.status == 10002) {
+                    alert('请先登录')
                 }
             },
             error:function($err){

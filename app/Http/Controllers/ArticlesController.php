@@ -23,19 +23,27 @@ class ArticlesController extends Controller
     public function praise($article_id)
     {
         $user = Auth::user();
-        if (count($user->articles_praise()->where('article_id', $article_id)->get())) {
-            $user->articles_praise()->detach($article_id);
-            return response()->json([
-                'status' => 10001,
-                'message' => '取消成功'
-            ]);
+        if ($user) {
+            if (count($user->articles_praise()->where('article_id', $article_id)->get())) {
+                $user->articles_praise()->detach($article_id);
+                return response()->json([
+                    'status' => 10001,
+                    'message' => '取消成功'
+                ]);
+            }else {
+                $user->articles_praise()->attach($article_id);
+                return response()->json([
+                    'status' => 200,
+                    'message' => '点赞成功'
+                ]);
+            }
         }else {
-            $user->articles_praise()->attach($article_id);
             return response()->json([
-                'status' => 200,
-                'message' => '点赞成功'
+                'status' => 10002,
+                'message' => '未登录'
             ]);
         }
+
     }
     //上传（网页向后端请求签名后直传OSS）
     public function upload()
