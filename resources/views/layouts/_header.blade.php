@@ -28,6 +28,7 @@
                           <li><a href="{{ route('users.edit', Auth::id()) }}">个人设置</a></li>
                           <li><a href="{{ route('articles.create') }}">我要上传</a></li>
                           <li><a href="{{ route('articles.index') }}">我的上传</a></li>
+                          <li><a href="{{ route('articles.praised') }}">我赞过的</a></li>
                           <!-- <li><a href="#">我的收藏</a></li> -->
                           <!-- <li><a href="#">我的关注</a></li> -->
                           @if(Auth::user()->isAdmin)

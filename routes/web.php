@@ -42,7 +42,8 @@ Route::get('/upload', 'ArticlesController@upload')->name('articles.upload');
 Route::post('/upload-photo', 'ArticlesController@uploadPhotos')->name('articles.upload-photo');
 //点赞和取消赞
 Route::get('/articles/praise/{article}', 'ArticlesController@praise')->name('articles.praise');
-Route::get('/articles/unpraise/{article}', 'ArticlesController@unpraise')->name('articles.unpraise');
+//赞过的文章
+Route::get('/articles/praised', 'ArticlesController@praised')->name('articles.praised');
 //文章搜索页
 Route::post('/articles/search', 'ArticlesController@search')->name('articles.search');
 //文章分类页

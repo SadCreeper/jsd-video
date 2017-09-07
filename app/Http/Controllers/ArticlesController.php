@@ -16,7 +16,7 @@ class ArticlesController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'only' => ['index', 'manage', 'create','store']
+            'only' => ['index', 'manage', 'create', 'store', 'upload', 'uploadPhotos', 'praised']
         ]);
     }
     //点赞
@@ -43,7 +43,13 @@ class ArticlesController extends Controller
                 'message' => '未登录'
             ]);
         }
-
+    }
+    //我赞过的文章
+    public function praised()
+    {
+        $user = Auth::user();
+        $articles = $user->articles_praise()->paginate(20);
+        return view('articles.praised', compact('articles'));
     }
     //上传（网页向后端请求签名后直传OSS）
     public function upload()
