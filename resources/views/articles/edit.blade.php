@@ -2,10 +2,6 @@
 
 @section('title', '编辑上传')
 
-@section('nickname', Auth::user()->nickname)
-
-@section('motto', Auth::user()->motto)
-
 @section('user_content')
 <h2>编辑上传</h2>
 

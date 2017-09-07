@@ -9,14 +9,36 @@ use App\Models\Category;
 use App\Models\PhoneVerification;
 use Auth;
 use GuzzleHttp\Client;
+use Image;
 
 class UsersController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', [
-            'only' => ['index', 'edit', 'update', 'config']
+            'only' => ['index', 'edit', 'update', 'config', 'avatar']
         ]);
+    }
+
+    //上传头像
+    public function avatar(Request $request)
+    {
+        //保存头像并生成路径
+        if ($request->hasFile('avatar')) {
+            if ($request->file('avatar')->isValid()) {
+                //头像压缩存储并生成路径
+                $path = "img/avatars/" . time() . "_" . str_random(10) . ".jpg";
+                Image::make($request->avatar)->resize(200, 200)->save(public_path($path));
+                $path = '/'.$path;
+                //更新头像
+                $user = Auth::user();
+                $data = [];
+                $data['avatar'] = $path;
+                $user->update($data);
+                session()->flash('success', '更新成功！');
+            }
+        }
+        return back();
     }
     //用户管理页
     public function index()

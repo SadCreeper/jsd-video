@@ -2,10 +2,6 @@
 
 @section('title', '我要上传')
 
-@section('nickname', Auth::user()->nickname)
-
-@section('motto', Auth::user()->motto)
-
 @section('styles')
 <style media="screen">
 .btn{

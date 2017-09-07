@@ -14,6 +14,8 @@
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
+//上传头像
+Route::post('/users/avatar', 'UsersController@avatar')->name('users.avatar');
 //用户资源路由
 Route::get('/users', 'UsersController@index')->name('users.index');
 //Route::get('/users/create', 'UsersController@create')->name('users.create');

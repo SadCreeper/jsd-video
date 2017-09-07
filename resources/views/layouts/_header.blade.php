@@ -22,7 +22,7 @@
                 @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img src="/img/default.jpg" alt="" class="img-circle" style="width:25px;height:25px"> {{ Auth::user()->nickname }} <span class="caret"></span>
+                            <img src="{{ Auth::user()->avatar  }}" alt="" class="img-circle" style="width:25px;height:25px"> {{ Auth::user()->nickname }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                           <li><a href="{{ route('users.edit', Auth::id()) }}">个人设置</a></li>

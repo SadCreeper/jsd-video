@@ -2,10 +2,6 @@
 
 @section('title', '作品管理')
 
-@section('nickname', Auth::user()->nickname)
-
-@section('motto', Auth::user()->motto)
-
 @section('user_content')
     <table class="table table-bordered table-hover">
         <thead>

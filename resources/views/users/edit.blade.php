@@ -2,20 +2,44 @@
 
 @section('title', '个人设置')
 
-@section('nickname', Auth::user()->nickname)
-
-@section('motto', Auth::user()->motto)
-
 @section('user_content')
 
     <h2>个人设置</h2>
 
     @include('shared.errors')
     @include('shared.messages')
-
+    <form class="form-horizontal" action="{{ route('users.avatar') }}" method="post"  enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <div class="form-group">
+            <label for="nickname" class="col-sm-2 control-label">头像</label>
+            <div class="col-sm-10">
+                <a href="" onclick="return false;" data-toggle="modal" data-target="#uploadAvatar"><img src="{{ $user->avatar }}" alt="" class="img-circle" style="height:100px"></a>
+                <!-- Modal -->
+                <div class="modal fade" id="uploadAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">更新头像</h4>
+                      </div>
+                          <div class="modal-body">
+                            <img src="{{ $user->avatar }}" alt="" class="img-responsive">
+                            <input type="file" name="avatar" style="margin-top:20px">
+                            <p class="help-block">最佳像素 200*200</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">确定</button>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id )}}">
         {{ method_field('PATCH') }}
         {{ csrf_field() }}
+
         <div class="form-group">
             <label for="nickname" class="col-sm-2 control-label">昵称</label>
             <div class="col-sm-10">

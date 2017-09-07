@@ -2,10 +2,6 @@
 
 @section('title', '网站设置')
 
-@section('nickname', Auth::user()->nickname)
-
-@section('motto', Auth::user()->motto)
-
 @section('user_content')
     @include('shared.errors')
     @include('shared.messages')

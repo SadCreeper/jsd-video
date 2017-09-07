@@ -5,9 +5,9 @@
     <div class="row" style="margin-top:30px">
         <div class="col-md-3">
             <div class="" >
-                <img src="/img/default.jpg" alt="" style="width:100%">
-                <h4>@yield('nickname', '-')</h4>
-                <p>@yield('motto', '-')</p>
+                <img src="{{ Auth::user()->avatar  }}" alt="" style="width:100%">
+                <h4>{{ Auth::user()->nickname  }}</h4>
+                <p>{{ Auth::user()->motto  }}</p>
                 <ul class="list-group">
                   <li class="list-group-item"><a href="{{ route('users.edit', Auth::id()) }}">个人设置</a></li>
                   <li class="list-group-item"><a href="{{ route('articles.create') }}">我要上传</a></li>
