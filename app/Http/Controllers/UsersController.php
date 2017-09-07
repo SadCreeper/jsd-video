@@ -103,7 +103,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nickname' => 'required|min:4|max:15',
+            'nickname' => 'unique:users|required|min:4|max:15',
             'password' => 'confirmed|min:6|max:16',
             'email' => 'email',
             'motto' => 'max:255',
