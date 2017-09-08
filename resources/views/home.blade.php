@@ -12,7 +12,7 @@
 
     <!-- 推荐区 -->
     <div class="row" style="margin-bottom:20px">
-        <div class="col-md-5">
+        <div class="col-md-5" style="margin-bottom:20px">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
@@ -70,13 +70,12 @@
         <h4>热评区</h4>
     </div>
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5" style="margin-bottom:20px">
             @foreach($articles_hot as $article)
               @if($loop->iteration == 1)
                   <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
               @endif
             @endforeach
-
         </div>
         <div class="col-md-7">
             <div class="row">
@@ -96,7 +95,7 @@
     @for ($i = 0; $i < sizeof($articles_category); $i++)
         <h4>{{ $articles_category[$i]['category'] }}</h4>
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5" style="margin-bottom:20px">
                 @foreach($articles_category[$i]['data'] as $article)
                   @if($loop->iteration == 1)
                       <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
