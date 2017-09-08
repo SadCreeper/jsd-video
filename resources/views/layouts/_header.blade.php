@@ -138,6 +138,7 @@
                     <input type="text" name="verify" class="form-control" placeholder="验证码">
                     <span class="input-group-btn">
                         <button id="verifyCodeBtn" class="btn btn-default" type="button">获取验证码</button>
+                        <button id="verifyCodeBtnWait" class="btn btn-default" style="display:none" type="button" disabled></button>
                     </span>
                 </div>
             </div>

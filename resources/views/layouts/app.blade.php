@@ -33,6 +33,7 @@
     $(document).ready(function(){
         //注册响应
         $("button#signUpBtn").click(function(){
+            //提交表单
             var form_data = $("form#signUpForm").serialize()
             result = $.ajax({
                 url:"{{ route('users.store') }}",
@@ -123,8 +124,27 @@
             $('#signIn').modal('show')
         })
         //发送验证码
-        $("#verifyCodeBtn").click(function(){
-            //console.log($("input#phone").val())
+        $("#verifyCodeBtn").click(function(z){
+            //60s后再次发送
+            var counter = $('#verifyCodeBtnWait')
+            $(z.target).hide()
+            counter.show()
+
+            var text = "s 后再次发送"
+            var number = 60
+            counter.text(number + text)
+
+            var t = setInterval(function() {
+                number -= 1
+                counter.text(number + text)
+                if (number === 0) {
+                    clearInterval(t)
+                    $(e.target).show()
+                    counter.hide()
+                }
+            }, 1000)
+
+            //发送验证码
             var phone = $("input#phone").val();
             $.ajax({
                 url:"/verify",
