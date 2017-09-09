@@ -81,6 +81,7 @@ class UsersController extends Controller
                 'nickname' => $request->nickname,
                 'password' => bcrypt($request->password),
                 'phone' => $request->phone,
+                'avatar' => '/img/avatars/default.jpg',
             ]);
             //注册成功自动登录
             Auth::login($user);
