@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <h2>{{ $article->title }}</h2>
-        <p>{{ $article->info }}</p>
+        <p>{{ $article->intro }}</p>
         <p>
             作者：{{ $article->user->nickname }}
             <span style="margin-left:20px">浏览：{{ $article->view }}</span>
