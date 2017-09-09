@@ -9,7 +9,7 @@
             padding-left: 7px;
             padding-right: 7px;
         }
-        .z-img-bottom-bar{
+        .z-img-bottom-bar-phone{
             position:relative;
             top:-22px;
             margin-bottom: -22px;
@@ -19,6 +19,20 @@
             white-space: nowrap;
         }
     }
+    @media screen and (min-width: 768px) {
+        .z-img-bottom-bar{
+            position:relative;
+            top:-25px;
+            margin-bottom: -25px;
+            color:white;
+            font-size: 13px;
+            /*background-color: black;
+            filter:alpha(opacity=60);-moz-opacity:0.6;-khtml-opacity: 0.6;opacity: 0.6;*/
+            white-space: nowrap;
+            padding-left: 10px;
+        }
+    }
+
 </style>
 @endsection
 
