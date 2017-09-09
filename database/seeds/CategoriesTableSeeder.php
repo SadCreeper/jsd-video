@@ -26,7 +26,7 @@ class CategoriesTableSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
         DB::table('categories')->insert([
-            'name' => '中医药学',
+            'name' => '中医养生',
             'created_at' => Carbon::now(),
         ]);
         DB::table('categories')->insert([
@@ -34,7 +34,7 @@ class CategoriesTableSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
         DB::table('categories')->insert([
-            'name' => '家乡风光',
+            'name' => '家乡多娇',
             'created_at' => Carbon::now(),
         ]);
     }

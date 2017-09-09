@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@qq.com',
             'phone' => 15011001100,
             'gender' => 1,
-            'avatar' => 'img/avatar.jpg',
+            'avatar' => '/img/avatars/default.jpg',
             'motto' => '生活可以随心所欲，但不能随波逐流',
             'isAdmin' => 1,
             'created_at' => Carbon::now(),
@@ -30,9 +30,9 @@ class UsersTableSeeder extends Seeder
             'email' => '87826632@qq.com',
             'phone' => 15008437193,
             'gender' => 1,
-            'avatar' => 'img/avatar.jpg',
-            'motto' => '生活可以随心所欲，但不能随波逐流aaa',
-            'isAdmin' => 0,
+            'avatar' => '/img/avatars/default.jpg',
+            'motto' => '生活可以随心所欲，但不能随波逐流',
+            'isAdmin' => 1,
             'created_at' => Carbon::now(),
         ]);
         //factory(App\Models\User::class, 50)->create();
