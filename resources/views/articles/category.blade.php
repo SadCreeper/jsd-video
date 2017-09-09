@@ -26,7 +26,7 @@
         <div class="col-md-3">
             <h4>热播排行</h4>
             @foreach($articles_hot as $article)
-                <a href="{{ route('articles.show', $article->id) }}"><p><span class="label label-danger">{{ $loop->iteration }}</span> {{ $article->title }}</p></a>
+                <a href="{{ route('articles.show', $article->id) }}"><p style="white-space: nowrap;overflow:hidden"><span class="label label-danger">{{ $loop->iteration }}</span> {{ $article->title }}</p></a>
             @endforeach
         </div>
     </div>
