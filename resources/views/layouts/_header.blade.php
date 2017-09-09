@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ route('home') }}">首页</a>
-            <form class="navbar-form navbar-right hidden-lg hidden-md" style="margin:0;border:0;padding:8px 25% 0 25%" action="{{ route('articles.search') }}" method="post">
+            <form class="navbar-form navbar-right hidden-lg hidden-md hidden-sm" style="margin:0;border:0;padding:8px 25% 0 25%" action="{{ route('articles.search') }}" method="post">
                 {{ csrf_field() }}
                 <!-- <div class="form-group">
                     <input type="text" class="form-control" name="key" placeholder="请输入">
@@ -28,7 +28,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 @foreach($category_header as $category)
-                    <li><a href="{{ route('articles.category', $category->id) }}">{{ $category->name }}</a></li>
+                    <li class="hidden-xs"><a href="{{ route('articles.category', $category->id) }}">{{ $category->name }}</a></li>
+                    <li class="col-xs-4 hidden-lg hidden-md hidden-sm"><a href="{{ route('articles.category', $category->id) }}">{{ $category->name }}</a></li>
                 @endforeach
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -70,7 +71,7 @@
                 @endif
 
             </ul>
-            <form class="navbar-form navbar-right hidden-sm hidden-xs" action="{{ route('articles.search') }}" method="post">
+            <form class="navbar-form navbar-right hidden-xs" action="{{ route('articles.search') }}" method="post">
                 {{ csrf_field() }}
                 <!-- <div class="form-group">
                     <input type="text" class="form-control" name="key" placeholder="请输入">
