@@ -20,7 +20,8 @@ class HomeController extends Controller
         //dump($categories);
         $articles_category = [];
         for ($i=0; $i < sizeof($categories); $i++) {
-            $articles_category[$i]['category'] = $categories[$i]['name'];
+            $articles_category[$i]['category_id'] = $categories[$i]['id'];
+            $articles_category[$i]['category_name'] = $categories[$i]['name'];
             $articles_category[$i]['data'] = Article::filterArticlesSmartHot('view',7,$categories[$i]['id']);
         }
         return view('home', compact('articles_top', 'articles_hot', 'articles_category'));

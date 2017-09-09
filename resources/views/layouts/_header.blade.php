@@ -69,7 +69,6 @@
                     <li><a href="" data-toggle="modal" data-target="#signUp">注册</a></li>
                     <li><a href="" id="uploadBtn" onclick="return false">上传</a></li>
                 @endif
-
             </ul>
             <form class="navbar-form navbar-right hidden-xs" action="{{ route('articles.search') }}" method="post">
                 {{ csrf_field() }}

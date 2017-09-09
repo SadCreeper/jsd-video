@@ -93,7 +93,10 @@
 
     <!-- 分类区 -->
     @for ($i = 0; $i < sizeof($articles_category); $i++)
-        <h4>{{ $articles_category[$i]['category'] }}</h4>
+        <h4>
+            {{ $articles_category[$i]['category_name'] }}
+            <a href="{{ route('articles.category', $articles_category[$i]['category_id']) }}"><span style="float:right">更多>></span></a>
+        </h4>
         <div class="row">
             <div class="col-md-5" style="margin-bottom:20px">
                 @foreach($articles_category[$i]['data'] as $article)
