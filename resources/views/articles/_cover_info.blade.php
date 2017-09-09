@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-6">
             <a href="{{ route('articles.show', $article->id) }}"><p style="white-space: nowrap;overflow:hidden"><b>{{ $article->title }}</b></p></a>
-            <p style="color:#BEBEBE;max-height:50px;overflow:hidden;">{{ $article->intro }}</p>
+            <p style="color:#BEBEBE;max-height:44px;overflow:hidden;">{{ $article->intro }}</p>
             <p><span class="glyphicon glyphicon-play-circle"></span> {{ $article->view }} <span class="glyphicon glyphicon-edit"></span> {{ $article->comment }}</p>
         </div>
     </div>
