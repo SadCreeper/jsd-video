@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row" style="margin-top:30px">
-        <div class="col-md-3">
+        <div class="col-md-3 hidden-sm hidden-xs">
             <div class="" >
                 <img src="{{ Auth::user()->avatar  }}" alt="" style="width:100%">
                 <h4>{{ Auth::user()->nickname  }}</h4>
