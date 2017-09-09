@@ -71,7 +71,7 @@ class UsersController extends Controller
             //通过验证码验证
             //验证数据
             $this->validate($request, [
-                'nickname' => 'required|min:4|max:15',
+                'nickname' => 'required|min:2|max:15',
                 'phone' => 'required|digits:11|unique:users',
                 'password' => 'required|confirmed|min:6|max:16',
             ]);
