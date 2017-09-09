@@ -139,7 +139,7 @@
                 counter.text(number + text)
                 if (number === 0) {
                     clearInterval(t)
-                    $(e.target).show()
+                    $(z.target).show()
                     counter.hide()
                 }
             }, 1000)
