@@ -159,7 +159,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $articles = Article::where('user_id', $user_id)->paginate(20);
+        $articles = Article::where('user_id', $user_id)->orderBy('created_at', 'desc')->paginate(20);
         return view('articles.index', compact('articles'));
     }
     //展示页
@@ -167,7 +167,7 @@ class ArticlesController extends Controller
     {
         //更新浏览量
         Article::update_view($id);
-        
+
         $article = Article::findOrFail($id);
         if ($article->type == 1) {
             return view('articles.show_video', compact('article'));
@@ -235,7 +235,7 @@ class ArticlesController extends Controller
                 'photos' => $request->photos,
             ]);
             session()->flash('success', '上传成功！');
-            return back();
+            return redirect('articles');
         }else{
             session()->flash('danger', '请上传图片或视频');
             return back();

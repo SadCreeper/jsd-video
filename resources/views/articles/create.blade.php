@@ -167,7 +167,7 @@ $("button#videoFormBtn").click(function(){
                 $("#uploadWarn").hide()
                 $("#uploadInfo").show()
                 $("#uploadInfo").html($mes.message)
-                //window.location.href="/"
+                window.location.href="/articles"
             }
             console.log($mes)
         },
@@ -212,7 +212,7 @@ $(function() {
         resize : {
             //width : 200,
             //height : 200,
-            quality : 90,
+            quality : 30,
             crop: true // crop to exact dimensions
         },
 

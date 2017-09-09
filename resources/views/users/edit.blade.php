@@ -8,7 +8,7 @@
 
     @include('shared.errors')
     @include('shared.messages')
-    <form class="form-horizontal" action="{{ route('users.avatar') }}" method="post"  enctype="multipart/form-data">
+    <form id="uploadAvatarForm" class="form-horizontal" action="{{ route('users.avatar') }}" method="post"  enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="nickname" class="col-sm-2 control-label">头像</label>
@@ -24,7 +24,7 @@
                       </div>
                           <div class="modal-body">
                             <img src="{{ $user->avatar }}" alt="" class="img-responsive">
-                            <input type="file" name="avatar" style="margin-top:20px">
+                            <input type="file" id="avatar" name="avatar" style="margin-top:20px">
                             <p class="help-block">最佳像素 200*200</p>
                           </div>
                           <div class="modal-footer">
@@ -97,4 +97,18 @@
             </div>
         </div>
     </form>
+@endsection
+
+@section('scripts')
+    @parent
+    <script type="text/javascript">
+    $("#uploadAvatarForm").submit(function(e){
+        var avatar = document.getElementById("avatar");
+        if (avatar.files[0].size > 2097152) {
+            alert('请上传小于2M的图片')
+            return false
+        }
+        return true
+    });
+    </script>
 @endsection
