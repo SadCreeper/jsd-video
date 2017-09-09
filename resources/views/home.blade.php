@@ -10,11 +10,11 @@
             padding-right: 7px;
         }
         .z-img-bottom-bar{
-            float:left
+            height:0;
             position:relative;
             top:-22px;
             color:white;
-            background-color:black;
+            background-color: black;
             filter:alpha(opacity=60);-moz-opacity:0.6;-khtml-opacity: 0.6;opacity: 0.6;
             white-space: nowrap;
             margin-bottom: 0
