@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <video src="http://z970-images.oss-cn-shanghai.aliyuncs.com/{{$article->video}}" controls="controls" width="100%" poster="{{ $article->cover }}">
+            <video src="http://z970-images.oss-cn-shanghai.aliyuncs.com/{{$article->video}}" style="max-height:400px" controls="controls" width="100%" poster="{{ $article->cover }}">
                 您的浏览器不支持视频播放。
             </video>
         </div>
