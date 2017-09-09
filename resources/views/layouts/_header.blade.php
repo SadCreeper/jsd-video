@@ -10,6 +10,19 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ route('home') }}">首页</a>
+            <form class="navbar-form navbar-right hidden-lg hidden-md" style="margin:0;border:0;padding:8px 25% 0 25%" action="{{ route('articles.search') }}" method="post">
+                {{ csrf_field() }}
+                <!-- <div class="form-group">
+                    <input type="text" class="form-control" name="key" placeholder="请输入">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button> -->
+                <div class="input-group">
+                    <input type="text" class="form-control" name="key" placeholder="请输入">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">搜索</button>
+                    </span>
+                </div>
+            </form>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -57,12 +70,18 @@
                 @endif
 
             </ul>
-            <form class="navbar-form navbar-right" action="{{ route('articles.search') }}" method="post">
+            <form class="navbar-form navbar-right hidden-sm hidden-xs" action="{{ route('articles.search') }}" method="post">
                 {{ csrf_field() }}
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <input type="text" class="form-control" name="key" placeholder="请输入">
                 </div>
-                <button type="submit" class="btn btn-default">搜索</button>
+                <button type="submit" class="btn btn-default">搜索</button> -->
+                <div class="input-group">
+                    <input type="text" class="form-control" name="key" placeholder="请输入">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">搜索</button>
+                    </span>
+                </div>
             </form>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
