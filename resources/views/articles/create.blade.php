@@ -103,7 +103,7 @@ a.btn:hover{
       </form>
   </div>
   <div role="tabpanel" class="tab-pane" id="albumTab">
-      <form class="form-horizontal" method="post" action="{{ route('articles.store') }}"  enctype="multipart/form-data">
+      <form id="photosUploadForm" class="form-horizontal" method="post" action="{{ route('articles.store') }}"  enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group">
               <label for="photo" class="col-sm-2 control-label">添加图片</label>
@@ -143,6 +143,12 @@ $('#myTabs a').click(function (e) {
 <!-- 提交表单 -->
 <script type="text/javascript">
 $("button#videoFormBtn").click(function(){
+    //判断封面图片大小
+    var cover = document.getElementById("cover");
+    if (cover.files[0].size > 2097152) {
+        alert('请上传小于2M的图片')
+        return false
+    }
     //var form_data = $("form#videoForm").serialize()
     var form_data = new FormData($('#videoForm')[0]);
     result = $.ajax({
@@ -188,6 +194,18 @@ $("button#videoFormBtn").click(function(){
         },
     });
 })
+</script>
+
+<!-- 拦截图片上传表单提交 -->
+<script type="text/javascript">
+$("#photosUploadForm").submit(function(e){
+    var cover = document.getElementById("cover");
+    if (cover.files[0].size > 2097152) {
+        alert('请上传小于2M的图片')
+        return false
+    }
+    return true
+});
 </script>
 
 <!-- 照片上传 -->

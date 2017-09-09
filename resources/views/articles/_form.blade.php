@@ -21,7 +21,7 @@
         @if(isset($article))
             <img src="{{ $article->cover }}" alt="" style="height:100px">
         @endif
-        <input type="file" class="form-control" name="cover">
+        <input type="file" class="form-control" id="cover" name="cover">
         <p class="help-block">最佳分辨率 480*300</p>
     </div>
 </div>
