@@ -14,6 +14,9 @@
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
+//反馈
+Route::post('/feedback', 'HomeController@feedback')->name('feedback');
+
 //上传头像
 Route::post('/users/avatar', 'UsersController@avatar')->name('users.avatar');
 //用户资源路由

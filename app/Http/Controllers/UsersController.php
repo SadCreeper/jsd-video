@@ -104,7 +104,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nickname' => 'unique:users|required|min:4|max:15',
+            'nickname' => 'required|min:4|max:15',
             'password' => 'confirmed|min:6|max:16',
             'email' => 'email',
             'motto' => 'max:255',
@@ -112,6 +112,14 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
         $this->authorize('update', $user);
+
+        //更改昵称
+        if ($request->nickname != $user->nickname) {
+            //检查昵称是否已存在
+            $this->validate($request, [
+                'nickname' => 'unique:users',
+            ]);
+        }
 
         $data = [];
         $data['nickname'] = $request->nickname;

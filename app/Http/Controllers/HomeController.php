@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
+
+use Mail;
+use App\Mail\Feedback;
 
 class HomeController extends Controller
 {
@@ -30,5 +34,17 @@ class HomeController extends Controller
     public function list()
     {
         return view('list');
+    }
+
+    //反馈信息
+    public function feedback(Request $request)
+    {
+        $data['feedback'] = $request->feedback;
+        $users = User::whereIn('id', [1,2])->get();
+        Mail::to($users)->send(new Feedback($data));
+        return response()->json([
+            'status' => '200',
+            'message' => "发送成功",
+        ]);
     }
 }

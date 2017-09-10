@@ -201,6 +201,35 @@
         }
     });
     </script>
+    <!-- 提交反馈表单 -->
+    <script type="text/javascript">
+        $("button#feedbackBtn").click(function(){
+            var feedback = $("#feedbackText").val()
+            $.ajax({
+                url:"/feedback",
+                type:"POST",
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                },
+                data:{
+                    'feedback':feedback
+                },
+                success:function($mes){
+                    //成功 进一步判断
+                    console.log($mes);
+                    if ($mes.status == 200) {
+                        //发送成功
+                        alert('发送成功，感谢您的反馈！')
+                        $('#feedback').modal('hide')
+                    }
+                },
+                error:function($err){
+                    //失败 打印返回信息
+                    console.log($err);
+                },
+            });
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>
