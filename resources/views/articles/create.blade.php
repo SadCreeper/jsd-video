@@ -224,7 +224,7 @@ $(function() {
         // Maximum file size
         max_file_size : '10mb',
 
-        chunk_size: '1mb',
+        chunk_size: '10mb',
 
         // Resize images on clientside if we can
         resize : {
