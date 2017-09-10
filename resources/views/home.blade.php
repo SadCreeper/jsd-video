@@ -32,7 +32,17 @@
             padding-left: 10px;
         }
     }
-
+    .z-img-bottom-bar-common{
+        position:relative;
+        top:-47px;
+        margin-bottom: -47px;
+        color:white;
+        font-size: 13px;
+        /*background-color: black;
+        filter:alpha(opacity=60);-moz-opacity:0.6;-khtml-opacity: 0.6;opacity: 0.6;*/
+        white-space: nowrap;
+        padding-left: 10px;
+    }
 </style>
 @endsection
 
@@ -110,6 +120,14 @@
             @foreach($articles_hot as $article)
               @if($loop->iteration == 1)
                   <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
+                  <!-- img bottom bar -->
+                  <div class="hidden-xs">
+                      <p class="z-img-bottom-bar">{{ $article->title }}</p>
+                  </div>
+                  <div class="hidden-lg hidden-md hidden-sm">
+                      <p class="z-img-bottom-bar-phone"><span class="glyphicon glyphicon-play-circle" style="margin-left:5px"></span> {{ $article->view }} <span class="glyphicon glyphicon-edit" style="margin-left:5px"></span> {{ $article->comment }}</p>
+                      <p style="height:44px;overflow:hidden;margin-bottom:0">{{ $article->title }}</p>
+                  </div>
               @endif
             @endforeach
         </div>
@@ -144,6 +162,14 @@
                 @foreach($articles_category[$i]['data'] as $article)
                   @if($loop->iteration == 1)
                       <a href="{{ route('articles.show', $article->id) }}"><img src="{{ $article->cover }}" alt="" style="width:100%"></a>
+                      <!-- img bottom bar -->
+                      <div class="hidden-xs">
+                          <p class="z-img-bottom-bar">{{ $article->title }}</p>
+                      </div>
+                      <div class="hidden-lg hidden-md hidden-sm">
+                          <p class="z-img-bottom-bar-phone"><span class="glyphicon glyphicon-play-circle" style="margin-left:5px"></span> {{ $article->view }} <span class="glyphicon glyphicon-edit" style="margin-left:5px"></span> {{ $article->comment }}</p>
+                          <p style="height:44px;overflow:hidden;margin-bottom:0">{{ $article->title }}</p>
+                      </div>
                   @endif
                 @endforeach
 
