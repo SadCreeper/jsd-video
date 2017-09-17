@@ -49,10 +49,10 @@ class Article extends Model
     static function filterArticlesByCategory($category_id,$number=0)
     {
         if ($number == 0) {
-            $articles = Article::where('category_id', $category_id)->paginate(20);
+            $articles = Article::where('category_id', $category_id)->orderBy('created_at', 'desc')->paginate(20);
         }
         else {
-            $articles = Article::where('category_id', $category_id)->limit($number)->get();
+            $articles = Article::where('category_id', $category_id)->orderBy('created_at', 'desc')->limit($number)->get();
         }
 
         return $articles;
