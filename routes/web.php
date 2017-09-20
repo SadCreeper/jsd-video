@@ -31,6 +31,7 @@ Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 Route::post('/verify', 'UsersController@verify')->middleware('throttle:1')->name('users.verify');
 //网站设置
 Route::get('/config', 'UsersController@config')->name('users.config');
+Route::patch('/conf', 'ConfController@update')->name('conf');
 
 //分类资源路由
 //Route::get('/categories', 'CategoriesController@index')->name('categories.index');

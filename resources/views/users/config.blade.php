@@ -5,15 +5,19 @@
 @section('user_content')
     @include('shared.errors')
     @include('shared.messages')
+
+
+    <div id="Warn" class="alert alert-danger" style="display:none">
+        <!-- 警告信息 -->
+    </div>
+    <div id="Info" class="alert alert-info" style="display:none">
+        <!-- 提示信息 -->
+    </div>
+
+    <h3>发布公告</h3>
+    <textarea name="notice" class="form-control" rows="3">{{ $confArr['notice'] }}</textarea>
+
     <h3>分类管理</h3>
-
-    <div id="categoryWarn" class="alert alert-danger" style="display:none">
-        <!-- 分类管理警告信息 -->
-    </div>
-    <div id="categoryInfo" class="alert alert-info" style="display:none">
-        <!-- 分类管理提示信息 -->
-    </div>
-
     <table class="table table-bordered table-hover">
         <thead>
             <tr class="success">
@@ -63,6 +67,46 @@
 @section('scripts')
 <script type="text/javascript">
 $(document).ready(function(){
+    //更新公告
+    $("[name='notice']").change(function(){
+        console.log($(this).val())
+        var notice = $(this).val()
+        updateConf('notice', notice)
+    });
+    //更新配置表
+    //@ *key          配置 key
+    //@ *value        配置的新 value
+    function updateConf(key, value){
+        $.ajax({
+            url:"/conf",
+            type:"PATCH",
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            data:{
+                'key':key,
+                'value':value,
+            },
+            success:function($mes){
+                //成功
+                //console.log($mes)
+                $("#Warn").hide()
+                $("#Info").html($mes.message)
+                $("#Info").show(300).delay(1000).hide(300)
+            },
+            error:function($err){
+                //失败 打印返回信息
+                if ($err.status == 500) {
+                    var confWarn = "服务器错误！"
+                }else{
+                    var confWarn = $err.responseText
+                }
+                $("#Warn").html(confWarn)
+                $("#Warn").show(300)
+            },
+        });
+    }
+
     //更新分类信息 - 排序
     $("[name='order']").change(function(){
         console.log($(this).attr('data-id'))
@@ -97,9 +141,9 @@ $(document).ready(function(){
                 console.log($mes)
                 //成功
                 //console.log($mes)
-                $("#categoryWarn").hide()
-                $("#categoryInfo").html($mes.message)
-                $("#categoryInfo").show(300).delay(1000).hide(300)
+                $("#Warn").hide()
+                $("#Info").html($mes.message)
+                $("#Info").show(300).delay(1000).hide(300)
             },
             error:function($err){
                 //失败 打印返回信息
@@ -112,8 +156,8 @@ $(document).ready(function(){
                         categoryWarn += "<li>"+$err[i]+"</li>"
                     }
                 }
-                $("#categoryWarn").html(categoryWarn)
-                $("#categoryWarn").show(300)
+                $("#Warn").html(categoryWarn)
+                $("#Warn").show(300)
             },
         });
     }

@@ -54,7 +54,6 @@ class Article extends Model
         else {
             $articles = Article::where('category_id', $category_id)->orderBy('created_at', 'desc')->limit($number)->get();
         }
-
         return $articles;
     }
 

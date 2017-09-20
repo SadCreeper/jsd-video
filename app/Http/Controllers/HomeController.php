@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Conf;
 
 use Mail;
 use App\Mail\Feedback;
@@ -19,7 +20,7 @@ class HomeController extends Controller
         //获取热评文章
         $articles_hot = Article::filterArticlesSmartHot('comment',7);
 
-        //TODO 获取分类文章
+        //获取分类文章
         $categories = Category::all();
         //dump($categories);
         $articles_category = [];
@@ -28,7 +29,11 @@ class HomeController extends Controller
             $articles_category[$i]['category_name'] = $categories[$i]['name'];
             $articles_category[$i]['data'] = Article::filterArticlesSmartHot('view',7,$categories[$i]['id']);
         }
-        return view('home', compact('articles_top', 'articles_hot', 'articles_category'));
+
+        //获取公告
+        $notice = Conf::where('key','notice')->first()->value;
+
+        return view('home', compact('articles_top', 'articles_hot', 'articles_category', 'notice'));
     }
 
     public function list()

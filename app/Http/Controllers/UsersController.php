@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\PhoneVerification;
+use App\Models\Conf;
 use Auth;
 use GuzzleHttp\Client;
 use Image;
@@ -202,9 +203,16 @@ class UsersController extends Controller
     {
         //验证登录用户是否为站长
         $this->authorize('super', Auth::user());
+        //获取配置表配置
+        $conf = Conf::all();
+        $confArr = [];
+        for ($i=0; $i<1; $i++) {
+            $confArr[$conf[$i]['key']] = $conf[$i]['value'];
+        }
         //获取分类信息
         $categories = Category::orderBy('order')->get();
-        return view('users.config', compact('categories'));
+        return view('users.config', compact('categories', 'confArr'));
+
     }
 
 }

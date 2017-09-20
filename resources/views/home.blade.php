@@ -49,13 +49,16 @@
 @section('content_under')
 
 <div class="container">
-    <!-- 分类 TODO -->
-    <div class="" style="height:50px">
-
-    </div>
+    <!-- 公告 TODO -->
+    @if( $notice != '')
+        <div class="alert alert-warning alert-dismissible" role="alert" style="margin-top:20px">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>公告：</strong> {{ $notice }}
+        </div>
+    @endif
 
     <!-- 推荐区 -->
-    <div class="row" style="margin-bottom:20px">
+    <div class="row" style="margin-bottom:20px;margin-top:20px">
         <div class="col-md-5 z-padding-phone" style="margin-bottom:20px">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
