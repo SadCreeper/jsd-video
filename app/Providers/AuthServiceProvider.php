@@ -8,7 +8,6 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
 
-
 class AuthServiceProvider extends ServiceProvider
 {
     /**
