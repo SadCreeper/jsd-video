@@ -92,8 +92,8 @@
 <!-- 登录模态框 -->
 <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content z-modal">
+      <div class="modal-header z-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">登录</h4>
       </div>
@@ -119,7 +119,7 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer z-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button id="signInBtn" type="button" class="btn btn-primary">登录</button>
       </div>
@@ -130,8 +130,8 @@
 <!-- 注册模态框 -->
 <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content z-modal">
+      <div class="modal-header z-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">注册</h4>
       </div>
@@ -171,7 +171,7 @@
             </div>
           </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer z-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button id="signUpBtn" type="button" class="btn btn-primary">注册</button>
 
