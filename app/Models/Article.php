@@ -65,7 +65,7 @@ class Article extends Model
     static function filterArticlesSmartHot($order,$number,$category_id=0)
     {
         //获取多少天之内的文章
-        $time = Carbon::now()->subDays(30);
+        $time = Carbon::now()->subYear();
         //过滤
         if ($category_id == 0) {
             $articles = Article::where('created_at', '>', $time)->orderBy($order, 'desc')->limit($number)->get();
