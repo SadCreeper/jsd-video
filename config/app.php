@@ -171,6 +171,8 @@ return [
          App\Providers\ComposerServiceProvider::class,
          //图片处理
          Intervention\Image\ImageServiceProvider::class,
+         //评论
+         risul\LaravelLikeComment\LikeCommentServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd60a180c7390053c33f58262bc33cc9",
+    "content-hash": "e94bbdbc71f3b3193757f13bc4f80eea",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1784,6 +1784,45 @@
                 "uuid"
             ],
             "time": "2017-08-04T13:39:04+00:00"
+        },
+        {
+            "name": "risul/laravel-like-comment",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/risul3/laravel-like-comment.git",
+                "reference": "f9051abb5770b71ccdad9fca4408d5238645df52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/risul3/laravel-like-comment/f9051abb5770b71ccdad9fca4408d5238645df52.zip",
+                "reference": "f9051abb5770b71ccdad9fca4408d5238645df52",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "risul\\LaravelLikeComment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "risul",
+                    "email": "risul321@gmail.com"
+                }
+            ],
+            "description": "Ajax based site wide like and comment system for laravel",
+            "keywords": [
+                "ajax",
+                "comment",
+                "laravel",
+                "like"
+            ],
+            "time": "2017-07-03T18:11:34+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

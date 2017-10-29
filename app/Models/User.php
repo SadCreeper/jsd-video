@@ -47,4 +47,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Article', 'praises', 'user_id', 'article_id');
     }
+
+    /**
+     * Return the user attributes.
+
+     * @return array
+     */
+    public static function getAuthor($id)
+    {
+        $user = self::find($id);
+        return [
+            'id'     => $user->id,
+            'name'   => $user->name,
+            'email'  => $user->email,
+            'url'    => '',  // Optional
+            'avatar' => 'gravatar',  // Default avatar
+            'admin'  => $user->role === 'admin', // bool
+        ];
+    }
 }

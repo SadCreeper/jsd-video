@@ -1,12 +1,21 @@
 @extends('layouts.app_imax')
 
-@section('title', '详情')
+@section('title', $article->title)
+
+@section('styles')
+<!-- 评论 -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/icon.min.css" rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/comment.min.css" rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
+<link href="{{ asset('/vendor/laravelLikeComment/css/style.css') }}" rel="stylesheet">
+@endsection
 
 @section('content_under')
 <div class="container">
 
     @include('articles._show_info')
-    
+
     <div class="row masonry">
         @for($i = 0; $i < sizeof($photos_arr); $i++)
         <div class="col-md-3 item" style="margin-bottom:20px">
@@ -56,4 +65,8 @@ $('#myModal').on('show.bs.modal', function (event) {
 
 })
 </script>
+
+<!-- 评论 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="{{ asset('/vendor/laravelLikeComment/js/script.js') }}" type="text/javascript"></script>
 @endsection
