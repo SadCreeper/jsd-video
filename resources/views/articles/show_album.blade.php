@@ -2,15 +2,6 @@
 
 @section('title', $article->title)
 
-@section('styles')
-<!-- 评论 -->
-<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/icon.min.css" rel="stylesheet">
-<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/comment.min.css" rel="stylesheet">
-<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
-<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
-<link href="{{ asset('/vendor/laravelLikeComment/css/style.css') }}" rel="stylesheet">
-@endsection
-
 @section('content_under')
 <div class="container">
 
@@ -42,8 +33,8 @@
 
 @section('scripts')
 <!--瀑布流-->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>
 $('.masonry').imagesLoaded(function() {
     $('.masonry').masonry({
@@ -65,8 +56,4 @@ $('#myModal').on('show.bs.modal', function (event) {
 
 })
 </script>
-
-<!-- 评论 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="{{ asset('/vendor/laravelLikeComment/js/script.js') }}" type="text/javascript"></script>
 @endsection
